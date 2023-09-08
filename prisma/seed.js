@@ -47,9 +47,15 @@ const seed = async () => {
       lastName: "pricone",
       verified: true,
       squeeks: {
-        create: {
+        create: [
+          {
           text: "nibble this squeek",
         },
+        {
+          text: "this is a resqueek",
+          reSqueekId: 2
+        }
+      ]
       },
     },
   });
@@ -95,28 +101,31 @@ const seed = async () => {
     {
       dislike: true,
       authorId: 1,
+      squeekId: 2
     },
     {
       dislike: true,
       authorId: 1,
-      replyId: 3,
+      replyId: 3
     },
     {
       like: true,
       authorId: 2,
+      squeekId: 1
     },
     {
       like: true,
       authorId: 2,
-      replyId: 3,
+      squeekId: 3,
     },
     {
       like: true,
       authorId: 3,
-      replyId: 2,
+      replyId: 2
     }
   ]
   });
+
 
   console.log(`REACTIONS CREATED`)
 

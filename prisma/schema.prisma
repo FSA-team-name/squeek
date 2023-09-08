@@ -48,7 +48,7 @@ model Reply {
   authorId        Int
   squeek          Squeek     @relation(fields: [squeekId], references: [id])
   squeekId        Int
-  reactions       Reaction[]
+  Reaction        Reaction[]
 }
 
 model Reaction {
@@ -57,9 +57,9 @@ model Reaction {
   dislike  Boolean @default(false)
   author   User    @relation(fields: [authorId], references: [id])
   authorId Int
-  // squeek   Squeek @relation(fields: [squeekId], references: [id])
-  // squeekId Int
-  reply    Reply?  @relation(fields: [replyId], references: [id])
+  squeek   Squeek?  @relation(fields: [squeekId], references: [id])
+  squeekId Int?
+  reply    Reply?   @relation(fields: [replyId], references: [id])
   replyId  Int?
 }
 
@@ -68,3 +68,4 @@ model Tag {
   name    String   @unique
   squeeks Squeek[]
 }
+
