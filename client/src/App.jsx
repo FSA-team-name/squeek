@@ -1,12 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
-import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Communities, Explore } from './imports';
-=======
-import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup } from './imports';
-import Communities from './pages/Communities';
-import Explore from './pages/Explore';
+import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore } from './imports';
 
->>>>>>> c78019834cbe9a93108fa70efc65544e62bf5ef7
 const App = () => {
 
   return (
