@@ -1,15 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup } from './imports';
-import Communities from './pages/Communities';
-import Explore from './pages/Explore';
+import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore } from './imports';
 
 const App = () => {
 
   return (
     <>
-
       <Navbar />
-      
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />}/>

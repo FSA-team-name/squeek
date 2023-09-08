@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      earlgrey: 'rgb(85, 83, 83)'
+    }
   },
   plugins: [],
 }
