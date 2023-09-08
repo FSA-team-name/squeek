@@ -53,12 +53,12 @@ model Reply {
 
 model Reaction {
   id       Int     @id @default(autoincrement())
-  like     Boolean?
-  dislike  Boolean?
+  like     Boolean @default(false)
+  dislike  Boolean @default(false)
   author   User    @relation(fields: [authorId], references: [id])
   authorId Int
-  squeek   Squeek?  @relation(fields: [squeekId], references: [id])
-  squeekId Int?
+  // squeek   Squeek @relation(fields: [squeekId], references: [id])
+  // squeekId Int
   reply    Reply?  @relation(fields: [replyId], references: [id])
   replyId  Int?
 }

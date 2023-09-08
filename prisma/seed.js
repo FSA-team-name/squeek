@@ -93,25 +93,27 @@ const seed = async () => {
   await prisma.reaction.createMany({
     data: [
     {
+      dislike: true,
       authorId: 1,
-      squeekId: 2,
     },
     {
-
+      dislike: true,
       authorId: 1,
-      squeekId: 3,
+      replyId: 3,
     },
     {
+      like: true,
       authorId: 2,
-      squeekId: 2,
     },
     {
+      like: true,
       authorId: 2,
-      squeekId: 3,
+      replyId: 3,
     },
     {
+      like: true,
       authorId: 3,
-      squeekId: 2,
+      replyId: 2,
     }
   ]
   });
