@@ -4,9 +4,11 @@ import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Th
 const App = () => {
 
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </>
   )
 }
 
