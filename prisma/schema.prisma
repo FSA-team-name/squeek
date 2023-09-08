@@ -28,7 +28,7 @@ model User {
 model Squeek {
   id              Int        @id @default(autoincrement())
   text            String
-  resqueekCount   Int
+  resqueekCount   Int        @default(0)
   reSqueekId      Int?
   dateTimeCreated DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
