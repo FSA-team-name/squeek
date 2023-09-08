@@ -43,13 +43,18 @@ const Navbar = () => {
           </Link>
           </li>
           <li>
-          <Link to="/profile" className='absolute text-earlgrey table w-32 p-4 hover:bg-[#eee] bottom-0'>
-            <i className='bi-person relative w-4 h-2 top-2 text-lg align-middle'></i>
-            <span className='relative top-2 ml-2'>Profile</span>
-          </Link>
+            <Link to="/profile" className='absolute text-earlgrey table w-32 p-4 hover:bg-[#eee] bottom-0'>
+              <i className='bi-person relative w-4 h-2 top-2 text-lg align-middle'></i>
+              <span className='relative top-2 ml-2'>Profile</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/signup" className="linkstyle">
+            Sign up
+            </Link>
           </li>
         </ul>
-        </nav>
+      </nav>
   )
 }
 
