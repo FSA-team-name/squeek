@@ -1,1 +1,0 @@
-const { makeBadge, ValidationError } = require('badge-maker')

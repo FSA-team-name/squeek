@@ -1,5 +1,14 @@
-# 🐭 Squeek | Very Original Social Media
+<div align="center">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/FSA-team-name/squeek">
+  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/FSA-team-name/squeek">
+  <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/FSA-team-name/squeek/main">
+  </div>
+
+
+<h1 align="center">🐭 Squeek | Very Original Social Media></h1>
+
 This is the best social media of **all time**
+
 >🐭Squeeks\
 >🔃Resqueek\
 >🧀Cheeses\
