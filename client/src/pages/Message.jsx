@@ -1,7 +1,7 @@
 const Message = () => {
 
   return (
-    <h1>MakeSqueeks</h1>
+    <h1>Message</h1>
   )
 }
 

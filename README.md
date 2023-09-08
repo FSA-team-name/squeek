@@ -18,6 +18,8 @@ This is the best social media of **all time**
 
 ## Link to our [Database Schema](https://drawsql.app/teams/team-name-29/diagrams/squeek)
 
+## Links to [Icons](https://www.figma.com/file/7U2x1eaasrBD4qYwhxq5xs/Bootstrap-Icons-(Community)?type=design&node-id=1287-4117&mode=design&t=16hEUG7CflyookJz-0) and [Icon Documentation](https://icons.getbootstrap.com/#icon-font)
+
 ## Priority 1 **(MVP)**
 - Create accounts
 - Log in
@@ -39,9 +41,11 @@ This is the best social media of **all time**
 - Allow users to join communities and browse through community feed
 - Allow users to save posts and add to different lists which can be found under favorites
 - Improve UI/UX
+- Add DOB in users
 
 ## Priority 4
 - View and post multiple images
 - View and post videos (1)
 - Allow customized profile pictures
 - Report Posts
+- Functional Settings Page
