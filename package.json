@@ -4,7 +4,9 @@
   "description": "This is the best social media of all time",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node ./server/index.js",
+    "server:dev": "nodemon ./server/index.js"
   },
   "keywords": [],
   "author": "",
