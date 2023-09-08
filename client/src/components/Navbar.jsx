@@ -23,6 +23,9 @@ const Navbar = () => {
           <Link to="/Profile" className="linkstyle">
             Profile
           </Link>
+          <Link to="/signup" className="linkstyle">
+            Sign up
+          </Link>
         </div>
     </>
   )
