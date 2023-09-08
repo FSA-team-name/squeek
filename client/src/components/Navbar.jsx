@@ -53,6 +53,11 @@ const Navbar = () => {
             Sign up
             </Link>
           </li>
+          <li>
+            <Link to="/login" className="linkstyle">
+            Login
+            </Link>
+          </li>
         </ul>
       </nav>
   )
