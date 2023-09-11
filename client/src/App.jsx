@@ -6,6 +6,9 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <section className='absolute top-0 bottom-0  h-full right-0 bg-[#FFFFFF] overflow-hidden'>
+        <Searchbar />
+      </section>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />}/>
