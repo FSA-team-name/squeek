@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {},
     colors: {
-      earlgrey: 'rgb(85, 83, 83)'
+      earlgrey: 'rgb(85, 83, 83)',
+      mickeygrey: 'rgb(193, 193, 193)',
+      cheeseyellow: 'rgb(253, 204, 75)'
     }
   },
   plugins: [],
