@@ -9,7 +9,9 @@ export default {
     colors: {
       earlgrey: 'rgb(85, 83, 83)',
       mickeygrey: 'rgb(193, 193, 193)',
-      cheeseyellow: 'rgb(253, 204, 75)'
+      cheeseyellow: 'rgb(253, 204, 75)',
+      toothwhite: 'rgb(250, 250, 250)',
+      backgroundgrey: 'rgb(207, 207, 207)'
     }
   },
   plugins: [],
