@@ -2,14 +2,14 @@ const Signup = () => {
 
   return (
     <>
-<section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+<section className="bg-earlgrey dark:bg-gray-900 min-h-screen flex items-center justify-center">
   <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 w-full">
-    <div className="py-12" style={{ width: '65%' }}>
+    <div className="py-12" style={{ width: '53%' }}>
       <a href="#" className="flex items-center mb-2 text-2xl font-semibold text-gray-900 dark:text-white">
           <img className="w-6 h-6 mr-1" src="src/assets/mouse-logo.png" alt="logo"></img>
           Squeek   
       </a>
-      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 max-w-3xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full bg-mickeygrey rounded-lg shadow border-2 border-cheeseyellow md:mt-0 max-w-3xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-2 space-y-1 md:space-y-2 sm:p-3">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Create an account
@@ -51,7 +51,7 @@ const Signup = () => {
                         <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                       </div>
                   </div>
-                  <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
+                  <button type="submit" className="w-full text-white bg-cheeseyellow hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
                   </p>
