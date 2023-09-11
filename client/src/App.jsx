@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore } from './imports';
+import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore, Login } from './imports';
 
 const App = () => {
 
@@ -14,6 +14,7 @@ const App = () => {
         <Route path='/communities' element={<Communities />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/signup' element={<Signup />}/>
+        <Route path='/login' element={<Login />}/>
       </Routes>
     </>
   )
