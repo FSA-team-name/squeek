@@ -27,4 +27,27 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/resqueek/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const post = await prisma.squeek.findUnique({
+      where: {
+        id: Number(id)
+      },
+      include: {
+        author: {
+          select: {
+            firstName: true,
+            username: true,
+            verified: true
+          }
+        }
+      }
+    });
+    res.send(post);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
