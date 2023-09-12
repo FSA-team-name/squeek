@@ -63,6 +63,11 @@ const Navbar = () => {
               <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Log In</h1>
             </Link>
           </li>
+          <li>
+            <Link to="/login" className="linkstyle">
+            Login
+            </Link>
+          </li>
         </ul>
       </nav>
   )
