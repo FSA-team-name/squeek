@@ -4,7 +4,7 @@ import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Th
 const App = () => {
 
   return (
-    <>
+    <body className='flex'>
       <Navbar />
       <section className='absolute top-0 bottom-0  h-full right-0 bg-[#FFFFFF] overflow-hidden'>
         <Searchbar />
@@ -19,7 +19,7 @@ const App = () => {
         <Route path='/signup' element={<Signup />}/>
         <Route path='/login' element={<Login />}/>
       </Routes>
-    </>
+    </body>
   )
 }
 
