@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node ./server/index.js",
-    "server:dev": "nodemon ./server/index.js"
+    "server:dev": "nodemon ./server/index.js",
+    "client:dev": "cd client && npm run dev",
+    "dev": "concurrently 'npm run server:dev' 'npm run client:dev'  "
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -28,6 +30,7 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
+    "concurrently": "^8.2.1",
     "prisma": "^5.2.0"
   }
 }
