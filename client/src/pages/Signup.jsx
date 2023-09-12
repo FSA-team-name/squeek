@@ -1,41 +1,52 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
-const Signup = () => {
+const Signup = ({ setToken }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [token, setToken] = useState('');
+  
 
-  const registerUser = async () => {
-    // e.preventDefault();
-    const response = await fetch('/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-      body: JSON.stringify({firstName, lastName, username, password, email, phone})
-    })
-
-    if(response.ok){
-      const data = await response.json();
-      console.log(data);
-    if(data){
-      alert("registered")
+  const registerUser = async (e) => {
+    try {
+      e.preventDefault();
+      const phoneNumber = phone ? parseInt(phone, 10) : null;
+  
+      if (password !== confirmPassword) {
+        setPasswordMatch(false);
+        return;
+      }
+  
+      const response = await fetch('/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, username, password, email, phone: phoneNumber })
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          setToken(data.token);
+          alert("Account created, thank you!");
+        } else {
+          alert("Could not create an account, please try again.");
+        }
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
     }
-    else{
-      alert("no work")
-    }
-    }
-
-  }
-  // registerUser();
-
-
+  };
 
   return (
     <>
@@ -69,8 +80,17 @@ const Signup = () => {
                       <input type="password" name="password" id="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                   </div>
                   <div>
-                      <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                      <input type="confirm-password" name="confirm-password" id="confirm-password" placeholder="••••••••"  value={password} onChange={(e) => setPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                      <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="••••••••"  value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
+                      className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                      !passwordMatch ? 'border-red-500' : '' 
+                      } dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} required
+                      />
+                      {!passwordMatch && (
+                      <p className="text-red-500 text-sm mt-1">
+                      Passwords do not match. Please try again.
+                      </p>
+                      )}
                   </div>
                   <div>
                       <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
@@ -90,7 +110,8 @@ const Signup = () => {
                   </div>
                   <button type="submit" className="w-full text-white bg-cheeseyellow hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                      Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                       Already have an account?
+                       <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500"> Login here</Link>
                   </p>
               </form>
           </div>

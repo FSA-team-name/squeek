@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-
+const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 const seed = async () => {
@@ -9,7 +9,7 @@ const seed = async () => {
   await prisma.user.create({
     data: {
       username: "wyatt",
-      password: "wyatt123",
+      password: await bcrypt.hash("wyatt123", 10),
       email: "wyatt@gmail.com",
       firstName: "wyatt",
       lastName: "rajer",
@@ -25,7 +25,7 @@ const seed = async () => {
   await prisma.user.create({
     data: {
       username: "mateo",
-      password: "mateo123",
+      password: await bcrypt.hash("mateo123", 10),
       email: "mateo@gmail.com",
       firstName: "mateo",
       lastName: "flores",
@@ -41,7 +41,7 @@ const seed = async () => {
   await prisma.user.create({
     data: {
       username: "jt",
-      password: "jt123",
+      password: await bcrypt.hash("jt123", 10),
       email: "jt@gmail.com",
       firstName: "jt",
       lastName: "pricone",
