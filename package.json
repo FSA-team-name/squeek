@@ -9,8 +9,7 @@
     "server:dev": "nodemon ./server/index.js",
 
     "client:dev": "cd client && npm run dev",
-    "dev": "concurrently 'npm run server:dev' 'npm run client:dev'  "
-
+    "dev": "concurrently 'npm run server:dev' 'npm run client:dev'  ",
     "client:build": "cd client && npm run build",
     "build:dev": "cd client && npm run build && cd .. && nodemon server/index.js",
     "migrate:prisma": "npx prisma migrate reset && npx prisma migrate dev && node prisma/seed.js",
