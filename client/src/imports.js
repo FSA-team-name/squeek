@@ -11,3 +11,4 @@ export { default as Login } from './pages/Login';
 export { default as Signup } from './pages/Signup';
 export { default as Communities } from './pages/Communities';
 export { default as  Explore } from './pages/Explore';
+export { default as Notfound } from './pages/Notfound';
