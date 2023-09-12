@@ -5,7 +5,7 @@
   </div>
 
 
-<h1 align="center">🐭 Squeek | Very Original Social Media></h1>
+<h1 align="center">🐭 Squeek | Very Original Social Media</h1>
 
 This is the best social media of **all time**
 
@@ -19,6 +19,24 @@ This is the best social media of **all time**
 ## Link to our [Database Schema](https://drawsql.app/teams/team-name-29/diagrams/squeek)
 
 ## Links to [Icons](https://www.figma.com/file/7U2x1eaasrBD4qYwhxq5xs/Bootstrap-Icons-(Community)?type=design&node-id=1287-4117&mode=design&t=16hEUG7CflyookJz-0) and [Icon Documentation](https://icons.getbootstrap.com/#icon-font)
+
+# PULL GUIDE:
+
+1. git pull origin main
+
+2. npm i && cd client && npm i
+
+3. Update .env file
+
+4. Create database if it does not exist
+
+5. Rename terminal to "prisma", run "npm run migrate:prisma" to migrate prisma and run seed file
+
+6. Open second terminal, rename "nodemon", run "npm run build:dev" to start express server and create dist folder
+
+7. Open third terminal, rename "vite", run "cd client && npm run dev" to start vite server
+
+8. Open fourth terminal, use this for all other necessities
 
 ## Priority 1 **(MVP)**
 - Create accounts
