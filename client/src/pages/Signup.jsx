@@ -13,10 +13,10 @@ const Signup = () => {
 
   const registerUser = async () => {
     // e.preventDefault();
-    const response = await fetch('localhost:3002/auth/register', {
+    const response = await fetch('/auth/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', 
       },
       body: JSON.stringify({firstName, lastName, username, password, email, phone})
     })
@@ -33,7 +33,7 @@ const Signup = () => {
     }
 
   }
-  registerUser();
+  // registerUser();
 
 
 
