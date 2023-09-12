@@ -5,7 +5,7 @@
   </div>
 
 
-<h1 align="center">🐭 Squeek | Very Original Social Media</h1>
+<h1 align="center">🐭 <a href='https://squeek.onrender.com/'>Squeek</a> | Very Original Social Media</h1>
 
 This is the best social media of **all time**
 

@@ -8,8 +8,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(true);
 
   return (
-      <nav className={`${open ? 'w-72' : 'w-20'} bg-toothwhite h-screen p-5 pt-8 relative duration-300`}>
-          <img src={control} className={`absolute -right-3 top-9 w-7 border-earlgrey border-2 rounded-full ${!open && 'rotate-180'}`} onClick={() => setOpen(!open)}/>
+      <nav className={`${open ? 'w-72' : 'w-20'} bg-toothwhite h-screen p-5 pt-8 sticky top-0 duration-300 border-r-4 border-cheeseyellow`}>
+          <img src={control} className={`absolute -right-3 top-9 w-7 border-cheeseyellow border-2 rounded-full ${!open && 'rotate-180'}`} onClick={() => setOpen(!open)}/>
           <div className='flex gap-x-4 items-center'>
             <img src={logo} alt='Logo' className={`w-10 duration-500 ${open && 'rotate-[360deg]'}`}/>
             <h1 className={`text-earlgrey relative font-medium text-xl duration-300 ${!open && 'scale-0'}`}>Squeek </h1>

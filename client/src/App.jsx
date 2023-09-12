@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore, Login } from './imports';
+import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore, Login, Notfound } from './imports';
 
 const App = () => {
 
   return (
-    <body className='flex'>
+    <section className='flex'>
       <Navbar />
       <section className='absolute top-0 bottom-0  h-full right-0 bg-[#FFFFFF] overflow-hidden'>
-        <Searchbar />
+        {/* <Searchbar /> */}
       </section>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -18,8 +18,10 @@ const App = () => {
         <Route path='/profile' element={<Profile />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/login' element={<Login />}/>
+        <Route path='/404-notfound' element={<Notfound />} />
+        <Route path='/thread' element={<Thread />} />
       </Routes>
-    </body>
+    </section>
   )
 }
 
