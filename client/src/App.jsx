@@ -5,8 +5,11 @@ import { useState } from 'react';
 const App = () => {
   const [token, setToken] = useState('');
   return (
-    <>
+    <body className='flex'>
       <Navbar />
+      <section className='absolute top-0 bottom-0  h-full right-0 bg-[#FFFFFF] overflow-hidden'>
+        <Searchbar />
+      </section>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />}/>
@@ -17,7 +20,7 @@ const App = () => {
         <Route path='/signup' element={<Signup setToken={setToken} />}/>
         <Route path='/login' element={<Login setToken={setToken} />}/>
       </Routes>
-    </>
+    </body>
   )
 }
 
