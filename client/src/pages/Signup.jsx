@@ -11,9 +11,9 @@ const Signup = () => {
   const [phone, setPhone] = useState('');
   const [token, setToken] = useState('');
 
-  const registerUser = async () => {
-    // e.preventDefault();
-    const response = await fetch('localhost:3002/auth/register', {
+  const registerUser = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,6 @@ const Signup = () => {
     }
 
   }
-  registerUser();
 
 
 
