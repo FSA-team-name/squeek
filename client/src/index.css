@@ -1,9 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body {
 background-color: #cfcfcf;
 }
@@ -28,3 +24,7 @@ nav {
   width: 280px;
   transition: all 0.5s ease;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

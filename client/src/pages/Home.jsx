@@ -1,45 +1,54 @@
 import { useState, useEffect } from "react";
-import ReSqueek from '../components/ReSqueek'
+import ReSqueek from "../components/ReSqueek";
 
 const Home = () => {
-
   const [squeeks, setSqueeks] = useState([]);
 
   useEffect(() => {
     const getSqueeks = async () => {
-      try{
-        const response = await fetch('/api/squeeks');
+      try {
+        const response = await fetch("/api/squeeks");
         const data = await response.json();
         setSqueeks(data);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
     getSqueeks();
-  }, [])
+  }, []);
 
   return (
-    <section className="flex-1 h-screen">
-      {squeeks.map(squeek => {
+    <section className="flex-col w-11/12">
+      {squeeks.map((squeek) => {
         return (
-          <section key={squeek.id} className="flex max-w-xl flex-col items-start justify-between">
-            <section className="flex items-center gap-x-4 text-xs">
-              <h3>{squeek.author.username}</h3>
-              <h2>{squeek.author.firstName}</h2>
-              <section >
-                <p className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">{squeek.text}</p>
-                <p className="text-gray-500">{squeek.dateTimeCreated}</p>
+            <section className="flex-auto flex-col my-4 mx-5 p-4 justify-center bg-toothwhite shadow-md rounded-2xl ">
+              {/* name and pic and hr */}
+              <section className="flex justify-between">
+                <section className="flex justify-start py-1">
+                  <h2 className="pr-1 font-bold text-earlgrey text-lg"> {squeek.author.firstName}</h2>
+                  <h3 className="text-cheeseyellow font-small">@{squeek.author.username}</h3>
+                </section>
+                <section>
+                  <p>2h</p>
+                </section>
               </section>
-              <section>
-                {squeek.reSqueekId ? <ReSqueek squeekID={squeek.reSqueekId} /> : null}
+              <section className="py-2">
+                <p className="font-medium text-earlgrey">{squeek.text}</p>
+              </section>
+              <section className="text-xs text-earlgrey py-1">
+                <p>{squeek.dateTimeCreated}</p>
               </section>
             </section>
-
-          </section>
         )
       })}
-    </section>
-  );
-};
+      </section>
+      )
+    }
 
 export default Home;
+
+            // <section>
+            //   {squeek.reSqueekId ? (
+            //     <ReSqueek squeekID={squeek.reSqueekId} />
+            //   ) : null}
+            // </section>
