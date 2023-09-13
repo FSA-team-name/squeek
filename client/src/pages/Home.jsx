@@ -21,7 +21,7 @@ const Home = () => {
     <section className="flex-col w-11/12">
       {squeeks.map((squeek) => {
         return (
-            <section className="flex-auto flex-col my-4 mx-5 p-4 justify-center bg-toothwhite shadow-md rounded-2xl ">
+            <section className="flex-auto flex-col my-4 mx-5 p-4 justify-center bg-toothwhite shadow-md rounded-s ">
               {/* name and pic and hr */}
               <section className="flex justify-between">
                 <section className="flex justify-start py-1">
