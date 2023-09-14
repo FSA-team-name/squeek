@@ -18,7 +18,7 @@ model User {
   firstName  String
   lastName   String
   photo      String
-  phone      Int?
+  phone      String?
   dateJoined DateTime   @default(now())
   verified   Boolean    @default(false)
   squeeks    Squeek[]
