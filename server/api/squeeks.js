@@ -61,9 +61,9 @@ router.post("/", checkAuth, async (req, res) => {
         text: req.body.text,
       },
     });
-    res.send(squeek);
+    res.status(201).send(squeek);
   } catch (err) {
-    console.log(err);
+    res.send(err);
   }
 });
 
