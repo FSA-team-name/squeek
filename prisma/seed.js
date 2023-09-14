@@ -14,6 +14,7 @@ const seed = async () => {
       firstName: "wyatt",
       lastName: "rajer",
       verified: true,
+      photo: 'https://images.pexels.com/photos/301448/pexels-photo-301448.jpeg',
       squeeks: {
         create: {
           text: "whatsup squeekers",
@@ -30,6 +31,7 @@ const seed = async () => {
       firstName: "mateo",
       lastName: "flores",
       verified: true,
+      photo: 'https://images.theconversation.com/files/265294/original/file-20190322-36283-1me4pb6.jpg',
       squeeks: {
         create: {
           text: "hello world cryingemoji laughingemoji",
@@ -46,6 +48,7 @@ const seed = async () => {
       firstName: "jt",
       lastName: "pricone",
       verified: true,
+      photo: 'https://thumbs.dreamstime.com/b/scared-wood-mouse-10705469.jpg',
       squeeks: {
         create: [
           {
