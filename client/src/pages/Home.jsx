@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="flex-col w-full">
+    <section className="flex-col h-screen w-full overflow-auto overscroll-none">
       {token ? <MakeSqueeks squeeks={squeeks} setSqueeks={setSqueeks} /> : null}
       {squeeks ? (
         squeeks.map((squeek, i) => {

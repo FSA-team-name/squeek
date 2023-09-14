@@ -42,16 +42,19 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
   };
 
   return (
-    <section>
-      <form onSubmit={formHandler}>
-        <input
-          value={squeekInput}
-          onChange={(e) => setSqueekInput(e.target.value)}
-          type="text"
-          placeholder="What's going on?????"
-        />
-        <button>Squeek</button>
-      </form>
+    <section className="flex flex-col my-2 mx-2 bg-toothwhite shadow-md"> 
+        <form onSubmit={formHandler} className="flex items-center">
+          <textarea
+            className="w-full inline outline-none resize-none mx-2 p-4 bg-toothwhite rounded-s "
+            value={squeekInput}
+            onChange={(e) => setSqueekInput(e.target.value)}
+            type="text"
+            placeholder="What's going on?????"
+          />
+      <button 
+        className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-earlgrey hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"
+      >Squeek</button>
+        </form>  
     </section>
   );
 };
