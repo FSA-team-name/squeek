@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import SqueekDisplay from "../components/SqueekDisplay";
 import MakeSqueeks from "../components/MakeSqueeks";
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [squeeks, setSqueeks] = useState([]);
+  const token = useSelector((state) => state.userToken.token);
+
 
   useEffect(() => {
     const getSqueeks = async () => {
@@ -20,7 +23,7 @@ const Home = () => {
 
   return (
     <section className="flex-col w-full">
-      <MakeSqueeks squeeks={squeeks} setSqueeks={setSqueeks} />
+      {token ? <MakeSqueeks squeeks={squeeks} setSqueeks={setSqueeks} /> : null}
       {squeeks ? (
         squeeks.map((squeek, i) => {
           return <SqueekDisplay key={i} squeek={squeek} />;

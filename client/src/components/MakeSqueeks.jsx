@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useSelector } from 'react-redux';
 
 const MakeSqueeks = ({ squeeks, setSqueeks }) => {
+  const token = useSelector((state) => state.userToken.token);
   const [squeekInput, setSqueekInput] = useState("");
   const [test, setTest] = useState();
 
@@ -11,7 +13,7 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk0NzEwNzE0fQ.ryh2oIMXmIZw9OmTeWYpriQsn-JNUar8BtKi3oxrvb8",
+            `Bearer ${token}`,
         },
         body: JSON.stringify({ text: input }),
       });
