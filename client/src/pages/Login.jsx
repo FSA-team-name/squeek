@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setToken } from "../redux/tokenSlice";
 
@@ -7,6 +7,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ const Login = () => {
           if (data.token) {
             dispatch(setToken(data.token));
             alert('Logged in successfully');
+            navigate("/")
           } else {
             setError("Invalid username or password");
           }

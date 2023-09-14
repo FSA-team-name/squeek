@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setToken } from '../redux/tokenSlice';
+
 
 
 const Signup = () => {
@@ -14,7 +15,11 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
+  const navigate = useNavigate();
+
+
   const dispatch = useDispatch();
+
 
   const registerUser = async (e) => {
     try {
@@ -39,6 +44,7 @@ const Signup = () => {
         if (data) {
           dispatch(setToken(data.token));
           alert("Account created, thank you!");
+          navigate("/")
         } else {
           alert("Could not create an account, please try again.");
         }
@@ -48,6 +54,7 @@ const Signup = () => {
     } catch (error) {
       console.error('An error occurred:', error);
     }
+    
   };
 
   return (
