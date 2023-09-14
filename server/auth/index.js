@@ -37,12 +37,13 @@ router.post("/register", async (req, res) => {
     const user = req.body;
     user.password = await bcrypt.hash(user.password, 10)
 
+
     user.photo = getRandomImageUrl();
+
 
     const result = await prisma.user.create({
       data: user
     })
-
     if(result){
       const token = jwt.sign({id: result.id}, process.env.JWT)
       res.status(201).send({token});
@@ -50,7 +51,8 @@ router.post("/register", async (req, res) => {
       res.send({message: "Couldn't create new user"})
     }
   } catch(err){
-    res.send(err.message)
+    console.error('Error occured during register', err)
+    res.status(500).send(err.message)
   }
 })
 

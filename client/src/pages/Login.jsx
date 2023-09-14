@@ -1,11 +1,16 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setToken } from "../redux/tokenSlice";
 
-const Login = ({ setToken }) => {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     const loginUser = async (e) => {
       try {
         e.preventDefault();
@@ -20,7 +25,7 @@ const Login = ({ setToken }) => {
         if (response.ok) {
           const data = await response.json();
           if (data.token) {
-            setToken(data.token);
+            dispatch(setToken(data.token));
             alert('Logged in successfully');
             navigate("/")
           } else {
