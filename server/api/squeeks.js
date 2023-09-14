@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
           select: {
             firstName: true,
             username: true,
+            photo: true,
             verified: true
           }
         }
