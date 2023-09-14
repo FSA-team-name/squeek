@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { checkAuth } = require('./utils.js');
 const { PrismaClient } = require("@prisma/client");
-const { NotFoundError } = require("@prisma/client/runtime/library");
+
 
 const prisma = new PrismaClient();
 
@@ -52,7 +53,7 @@ router.get("/resqueek/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", checkAuth, async (req, res) => {
   try {
     const squeek = await prisma.squeek.create({
       data: {
