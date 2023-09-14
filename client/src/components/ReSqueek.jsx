@@ -24,7 +24,7 @@ const ReSqueek = ({ squeekID }) => {
           {/* name and pic and hr */}
           <section className="flex justify-between items-center">
             <section className="flex justify-start py-1 items-center">
-              <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden">
+              <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
                 <img className="h-full" src={reSqueek.author.photo} />
               </section>
               <h2 className="px-2 font-bold text-earlgrey text-lg">

@@ -25,7 +25,7 @@ const Home = () => {
             {/* name and pic and hr */}
             <section className="flex justify-between items-center">
               <section className="flex justify-start py-1 items-center">
-                <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden">
+                <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
                   <img className="h-full" src={squeek.author.photo} />
                 </section>
                 <h2 className="px-2 font-bold text-earlgrey text-lg">
@@ -43,7 +43,7 @@ const Home = () => {
               <p className="font-medium text-earlgrey">{squeek.text}</p>
             </section>
             {squeek.reSqueekId ? (
-              <section className="m-4 border-t-2 border-t-cheeseyellow">
+              <section className="m-4">
                 <ReSqueek squeekID={squeek.reSqueekId} />
               </section>
             ) : null}
