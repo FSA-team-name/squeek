@@ -7,11 +7,8 @@ const App = () => {
   const token = useSelector((state) => state.userToken.token);
   
   return (
-    <section className='flex'>
+    <section className='flex relative'>
       <Navbar />
-      <section className='absolute top-0 bottom-0  h-full right-0 bg-[#FFFFFF] overflow-hidden'>
-        {/* <Searchbar /> */}
-      </section>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />}/>
@@ -24,6 +21,9 @@ const App = () => {
         <Route path='/signup' element={<Signup />}/>
         <Route path='/login' element={<Login />}/>
       </Routes>
+      <section className='w-72 block bg-toothwhite h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-cheeseyellow'>
+        <Searchbar />
+      </section>
     </section>
   )
 }

@@ -45,8 +45,8 @@ const Login = () => {
 
   return (
     <>
-      <section className="bg-earlgrey">
-  <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className="bg-earlgrey flex flex-col items-center justify-center min-h-screen w-full">
+  <div className="w-full flex flex-col items-center">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img className="w-8 h-8 mr-2" src="src/assets/mouse-logo.png" alt="logo"/>
           Squeek    

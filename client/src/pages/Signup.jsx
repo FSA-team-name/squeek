@@ -52,7 +52,7 @@ const Signup = () => {
 
   return (
     <>
-<section className="bg-earlgrey dark:bg-gray-900 min-h-screen flex items-center justify-center">
+<section className="bg-earlgrey dark:bg-gray-900 min-h-screen flex items-center justify-center w-full">
   <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 w-full">
     <div className="py-12" style={{ width: '53%' }}>
       <a href="#" className="flex items-center mb-2 text-2xl font-semibold text-gray-900 dark:text-white">

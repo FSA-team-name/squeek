@@ -17,7 +17,8 @@ model User {
   email      String     @unique
   firstName  String
   lastName   String
-  phone      Int?
+  photo      String
+  phone      String?
   dateJoined DateTime   @default(now())
   verified   Boolean    @default(false)
   squeeks    Squeek[]
@@ -57,9 +58,9 @@ model Reaction {
   dislike  Boolean @default(false)
   author   User    @relation(fields: [authorId], references: [id])
   authorId Int
-  squeek   Squeek?  @relation(fields: [squeekId], references: [id])
+  squeek   Squeek? @relation(fields: [squeekId], references: [id])
   squeekId Int?
-  reply    Reply?   @relation(fields: [replyId], references: [id])
+  reply    Reply?  @relation(fields: [replyId], references: [id])
   replyId  Int?
 }
 
@@ -68,4 +69,3 @@ model Tag {
   name    String   @unique
   squeeks Squeek[]
 }
-
