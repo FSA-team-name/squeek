@@ -52,4 +52,8 @@ router.get("/resqueek/:id", async (req, res) => {
   }
 });
 
+router.post('/', (req, res) => {
+  console.log(req.user, req.body);
+})
+
 module.exports = router;
