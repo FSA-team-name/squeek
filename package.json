@@ -13,7 +13,6 @@
     "build:dev": "cd client && npm run build && cd .. && nodemon server/index.js",
     "migrate:prisma": "npx prisma migrate reset && npx prisma migrate dev && node prisma/seed.js",
     "build": "npm i && cd client && npm i && npm run build"
-
   },
   "prisma": {
     "seed": "node prisma/seed.js"
