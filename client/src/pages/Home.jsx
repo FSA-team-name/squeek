@@ -23,7 +23,7 @@ const Home = () => {
       <MakeSqueeks />
       {squeeks.map((squeek, i) => {
         return (
-          <SqueekDisplay squeek={squeek} i={i}/>   
+          <SqueekDisplay key={i} squeek={squeek} />
         );
       })}
     </section>
