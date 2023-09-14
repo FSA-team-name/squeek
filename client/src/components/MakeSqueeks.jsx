@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 
 const MakeSqueeks = ({ squeeks, setSqueeks }) => {
   const token = useSelector((state) => state.userToken.token);
   const [squeekInput, setSqueekInput] = useState("");
-  const [test, setTest] = useState();
+  const [characterCount, setCharacterCount] = useState(0);
+  const [keystroke, setKeystroke] = useState();
 
   const postSqueek = async (input) => {
     try {
@@ -41,13 +42,33 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
     await getSqueeks();
   };
 
+  const keyDownHandler = (e) => {
+    setKeystroke(e.key)
+  }
+
+  const changeHandler = async (e) => {
+     setCharacterCount(e.target.value.length)
+     console.log(keystroke)
+     if (keystroke === 'Backspace') {
+      return setSqueekInput(e.target.value)
+     }
+     if (e.target.value.length >= 140) {
+       return setSqueekInput(squeekInput);
+     }
+     setSqueekInput(e.target.value)
+  }
+
+
   return (
     <section className="flex flex-col my-2 mx-2 bg-toothwhite shadow-md"> 
+    {characterCount}
         <form onSubmit={formHandler} className="flex items-center">
           <textarea
-            className="w-full inline outline-none resize-none mx-2 p-4 bg-toothwhite rounded-s "
+            className="w-full h-20 p-2 inline outline-none resize-none mx-2 bg-toothwhite rounded-s "
             value={squeekInput}
-            onChange={(e) => setSqueekInput(e.target.value)}
+            rows={5}
+            onChange={changeHandler}
+            onKeyDown={keyDownHandler}
             type="text"
             placeholder="What's going on?????"
           />
