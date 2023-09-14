@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
 const { NotFoundError } = require("@prisma/client/runtime/library");
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
   try {
@@ -14,13 +14,13 @@ router.get("/", async (req, res) => {
             firstName: true,
             username: true,
             photo: true,
-            verified: true
-          }
-        }
+            verified: true,
+          },
+        },
       },
       orderBy: {
-        id: 'desc'
-      }
+        id: "desc",
+      },
     });
     res.send(posts);
   } catch (err) {
@@ -29,11 +29,11 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/resqueek/:id", async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
     const post = await prisma.squeek.findUnique({
       where: {
-        id: Number(id)
+        id: Number(id),
       },
       include: {
         author: {
@@ -41,10 +41,10 @@ router.get("/resqueek/:id", async (req, res) => {
             firstName: true,
             username: true,
             photo: true,
-            verified: true
-          }
-        }
-      }
+            verified: true,
+          },
+        },
+      },
     });
     res.send(post);
   } catch (err) {
@@ -52,8 +52,18 @@ router.get("/resqueek/:id", async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  console.log(req.user, req.body);
-})
+router.post("/", async (req, res) => {
+  try {
+    const squeek = await prisma.squeek.create({
+      data: {
+        authorId: req.user,
+        text: req.body.text,
+      },
+    });
+    res.send(squeek);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
