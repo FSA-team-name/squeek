@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setToken }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
-
+    const navigate = useNavigate();
     const loginUser = async (e) => {
       try {
         e.preventDefault();
@@ -22,6 +22,7 @@ const Login = ({ setToken }) => {
           if (data.token) {
             setToken(data.token);
             alert('Logged in successfully');
+            navigate("/")
           } else {
             setError("Invalid username or password");
           }

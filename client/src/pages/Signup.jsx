@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -12,7 +12,7 @@ const Signup = ({ setToken }) => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  
+  const navigate = useNavigate();
 
   const registerUser = async (e) => {
     try {
@@ -37,6 +37,7 @@ const Signup = ({ setToken }) => {
         if (data) {
           setToken(data.token);
           alert("Account created, thank you!");
+          navigate("/")
         } else {
           alert("Could not create an account, please try again.");
         }
@@ -46,6 +47,7 @@ const Signup = ({ setToken }) => {
     } catch (error) {
       console.error('An error occurred:', error);
     }
+    
   };
 
   return (
