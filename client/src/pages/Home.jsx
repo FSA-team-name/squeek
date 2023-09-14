@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import SqueekDisplay from "../components/SqueekDisplay";
-import MakeSqueeks from "../components/MakeSqueeks"
+import MakeSqueeks from "../components/MakeSqueeks";
 
 const Home = () => {
   const [squeeks, setSqueeks] = useState([]);
@@ -20,12 +20,14 @@ const Home = () => {
 
   return (
     <section className="flex-col w-full">
-      <MakeSqueeks />
-      {squeeks.map((squeek, i) => {
-        return (
-          <SqueekDisplay key={i} squeek={squeek} />
-        );
-      })}
+      <MakeSqueeks squeeks={squeeks} setSqueeks={setSqueeks} />
+      {squeeks ? (
+        squeeks.map((squeek, i) => {
+          return <SqueekDisplay key={i} squeek={squeek} />;
+        })
+      ) : (
+        <h1>Loading ...</h1>
+      )}
     </section>
   );
 };
