@@ -8,19 +8,16 @@ export const tokenSlice = createSlice({
   name: 'token',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.token = state;
+    // setToken: (state) => {
+    //   state.token = state;
+    // },
+    setToken: (state, action) => {
+      state.token = action.payload
     },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload
-    // },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = tokenSlice.actions
+export const { setToken } = tokenSlice.actions
 
 export default tokenSlice.reducer

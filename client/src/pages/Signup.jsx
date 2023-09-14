@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/tokenSlice';
 
 
-
-const Signup = ({ setToken }) => {
+const Signup = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -12,7 +13,8 @@ const Signup = ({ setToken }) => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  
+
+  const dispatch = useDispatch();
 
   const registerUser = async (e) => {
     try {
@@ -35,7 +37,7 @@ const Signup = ({ setToken }) => {
       if (response.ok) {
         const data = await response.json();
         if (data) {
-          setToken(data.token);
+          dispatch(setToken(data.token));
           alert("Account created, thank you!");
         } else {
           alert("Could not create an account, please try again.");

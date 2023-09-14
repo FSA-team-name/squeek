@@ -3,6 +3,6 @@ import tokenReducer from './tokenSlice';
 
 export const store = configureStore({
   reducer: {
-    token: tokenReducer
+    userToken: tokenReducer
   },
 })
