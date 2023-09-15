@@ -30,7 +30,7 @@ const Thread = () => {
         {squeek ? (
           squeek.replies.map((reply) => {
             return (
-              <section className=" mx-14 p-4 justify-center my-1 rounded-md bg-toothwhite border-2 border-cheeseyellow">
+              <section key={reply.id} className=" mx-14 p-4 justify-center my-1 rounded-md bg-toothwhite border-2 border-cheeseyellow">
                 {/* name and pic and hr */}
                 <section className="flex justify-between items-center">
                   <section className="flex justify-start py-1 items-center">

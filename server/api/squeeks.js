@@ -102,4 +102,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post('/:squeekId/reply',checkAuth, async (req, res) => {
+  const { squeekId } = req.params;
+  const { text } = req.body;
+  console.log(squeekId, text)
+  try {
+    const reply = await prisma.reply.create({
+      data: {
+        text: text,
+        authorId: req.user,
+        squeekId: Number(squeekId)
+      }
+    })
+
+      res.status(201).send(reply)
+   
+
+  
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('internal server error')
+  }
+})
+
 module.exports = router;
