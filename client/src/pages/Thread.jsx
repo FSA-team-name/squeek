@@ -9,9 +9,9 @@ const Thread = () => {
   useEffect(() => {
     const getSqueekAndReplies = async() => {
       try {
-        // const response = await fetch(`/api/squeeks/${id}`);
-        console.log(id)
-
+        const response = await fetch(`/api/squeeks/${id}`);
+        const data = await response.json();
+        setSqueek(data);
       } catch (err) {
         console.log(err)
       }
@@ -21,14 +21,13 @@ const Thread = () => {
   }, []);
 
   return (
-    // <section className="flex-col h-screen w-full overflow-auto overscroll-none">
-    //   {squeeks ? (
-    //     <SqueekDisplay key={i} squeek={squeek} />
-    //   ) : (
-    //     <h1>Loading ...</h1>
-    //   )}
-    // </section>
-    <h1>thread</h1>
+    <section className="flex-col h-screen w-full overflow-auto overscroll-none">
+      {squeek ? (
+        <SqueekDisplay squeek={squeek} />
+      ) : (
+        <h1>Loading ...</h1>
+      )}
+    </section>
   );
 };
 
