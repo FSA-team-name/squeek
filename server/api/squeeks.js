@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { checkAuth } = require('./utils.js');
+const { checkAuth } = require("./utils.js");
 const { PrismaClient } = require("@prisma/client");
-
 
 const prisma = new PrismaClient();
 
@@ -64,6 +63,42 @@ router.post("/", checkAuth, async (req, res) => {
     res.status(201).send(squeek);
   } catch (err) {
     res.send(err);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await prisma.squeek.findUnique({
+      where: {
+        id: Number(id),
+      },
+      include: {
+        author: {
+          select: {
+            firstName: true,
+            username: true,
+            photo: true,
+            verified: true,
+          },
+        },
+        replies: {
+          include: {
+            author: {
+              select: {
+                firstName: true,
+                username: true,
+                photo: true,
+                verified: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    res.send(post);
+  } catch (err) {
+    console.log(err);
   }
 });
 
