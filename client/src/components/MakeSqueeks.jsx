@@ -74,7 +74,7 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
             type="text"
             placeholder="What's going on?????"
           />
-      <section className="absolute bottom-0 right-10">
+      <section className="absolute bottom-0 right-11">
        <p className="text-xs text-mickeygrey">{characterCount}/140</p>
 
       </section>

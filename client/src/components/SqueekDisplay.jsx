@@ -21,7 +21,7 @@ const SqueekDisplay = ({ squeek }) => {
             </section>
           </section>
           <section className="py-2">
-            <p className="font-medium text-earlgrey">{squeek.text}</p>
+            <p className="whitespace-pre-line font-medium text-earlgrey">{squeek.text}</p>
           </section>
           {squeek.reSqueekId ? (
             <section className="m-4">
