@@ -30,12 +30,16 @@ const ReSqueek = ({ squeekID }) => {
                 <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
                   <img className="h-full" src={reSqueek.author.photo} />
                 </section>
-                <h2 className="px-2 font-bold text-earlgrey text-lg">
-                  {reSqueek.author.firstName}
-                </h2>
-                <h3 className="text-cheeseyellow font-small">
-                  @{reSqueek.author.username}
-                </h3>
+                <section className="flex ml-2 bg-cheeseyellow rounded-s-sm">
+                  <h2 className="px-1 font-bold text-earlgrey text-lg">
+                    {reSqueek.author.firstName}
+                  </h2>
+                </section>
+                <section className="flex px-1 bg-earlgrey rounded-e-sm">
+                  <h3 className="text-cheeseyellow text-sm p-1">
+                    @{reSqueek.author.username}
+                  </h3>
+                </section>
               </section>
               {/* <section>
                 <p>2h</p>
