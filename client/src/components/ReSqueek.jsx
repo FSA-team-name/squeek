@@ -37,9 +37,9 @@ const ReSqueek = ({ squeekID }) => {
                   @{reSqueek.author.username}
                 </h3>
               </section>
-              <section>
+              {/* <section>
                 <p>2h</p>
-              </section>
+              </section> */}
             </section>
             <section className="py-2">
               <p className="font-medium text-earlgrey">{reSqueek.text}</p>

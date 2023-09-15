@@ -19,9 +19,9 @@ const SqueekDisplay = ({ squeek }) => {
             @{squeek.author.username}
           </h3>
         </section>
-        <section>
+        {/* <section>
           <p>2h</p>
-        </section>
+        </section> */}
       </section>
       <Link to={squeekURL}>
         <section className="py-2">
