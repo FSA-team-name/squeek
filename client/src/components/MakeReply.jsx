@@ -9,7 +9,7 @@ const MakeReply = ({ squeek, setSqueek, id }) => {
 
   const postReply = async (input) => {
     try {
-      const response = await fetch("/api/squeeks", {
+      const response = await fetch(`/api/squeeks/${id}/reply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
