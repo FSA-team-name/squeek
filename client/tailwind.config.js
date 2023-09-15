@@ -12,7 +12,10 @@ export default {
         cheeseyellow: 'rgb(253, 204, 75)',
         toothwhite: 'rgb(250, 250, 250)',
         backgroundgrey: 'rgb(230, 233, 235)',
-      }
+      },
+      scale: {
+        '-100': '-1',
+    }
     }
   },
   plugins: [],
