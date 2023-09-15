@@ -48,7 +48,6 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
 
   const changeHandler = async (e) => {
      setCharacterCount(e.target.value.length)
-     console.log(keystroke)
      if (keystroke === 'Backspace') {
       return setSqueekInput(e.target.value)
      }
@@ -61,8 +60,7 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
 
   return (
     <section className="flex flex-col my-2 mx-2 bg-toothwhite shadow-md"> 
-    {characterCount}
-        <form onSubmit={formHandler} className="flex items-center">
+        <form onSubmit={formHandler} className="flex relative items-center">
           <textarea
             className="w-full h-20 p-2 inline outline-none resize-none mx-2 bg-toothwhite rounded-s "
             value={squeekInput}
@@ -72,6 +70,10 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
             type="text"
             placeholder="What's going on?????"
           />
+      <section className="absolute bottom-0 right-10">
+       <p className="text-xs text-mickeygrey">{characterCount}/140</p>
+
+      </section>
       <button 
         className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-earlgrey hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"
       >Squeek</button>
