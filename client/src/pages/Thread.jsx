@@ -12,7 +12,6 @@ const Thread = () => {
         const response = await fetch(`/api/squeeks/${id}`);
         const data = await response.json();
         setSqueek(data);
-        console.log(data)
       } catch (err) {
         console.log(err)
       }
@@ -23,7 +22,7 @@ const Thread = () => {
 
   return (
     <section className="flex-col h-screen w-full overflow-auto overscroll-none">
-      <section className="bg-earlgrey mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
+      <section className="bg-toothwhite mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
 
       {squeek ? (
         <SqueekDisplay squeek={squeek} />
