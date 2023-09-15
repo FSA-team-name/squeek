@@ -37,8 +37,12 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
 
   const formHandler = async (e) => {
     e.preventDefault();
+    if (squeekInput.length === 0) {
+      return
+    }
     await postSqueek(squeekInput);
     setSqueekInput("");
+    setCharacterCount(0)
     await getSqueeks();
   };
 
