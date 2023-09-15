@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 
-const MakeReply = ({ squeek, setSqueek }) => {
+const MakeReply = ({ squeek, setSqueek, id }) => {
   const token = useSelector((state) => state.userToken.token);
   const [squeekInput, setSqueekInput] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const [keystroke, setKeystroke] = useState();
 
-  const postSqueek = async (input) => {
+  const postReply = async (input) => {
     try {
       const response = await fetch("/api/squeeks", {
         method: "POST",
@@ -24,11 +24,11 @@ const MakeReply = ({ squeek, setSqueek }) => {
     }
   };
 
-  const getSqueeks = async () => {
+  const getSqueek = async () => {
     try {
-      const response = await fetch("/api/squeeks");
+      const response = await fetch(`/api/squeeks/${id}`);
       const data = await response.json();
-      await setSqueeks(data);
+      await setSqueek(data);
     } catch (err) {
       console.log(err);
     }
@@ -39,10 +39,10 @@ const MakeReply = ({ squeek, setSqueek }) => {
     if (squeekInput.length === 0) {
       return
     }
-    await postSqueek(squeekInput);
+    await postReply(squeekInput);
     setSqueekInput("");
     setCharacterCount(0)
-    await getSqueeks();
+    await getSqueek();
   };
 
   const keyDownHandler = (e) => {
@@ -71,15 +71,15 @@ const MakeReply = ({ squeek, setSqueek }) => {
             onChange={changeHandler}
             onKeyDown={keyDownHandler}
             type="text"
-            placeholder="What's going on?????"
+            placeholder="Reply to this squeek"
           />
       <section className="absolute bottom-0 right-11">
        <p className="text-xs text-mickeygrey">{characterCount}/140</p>
 
       </section>
       <button 
-        className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-earlgrey hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"
-      >Squeek</button>
+        className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-earlgrey hover:bg-earlgrey hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"
+      >Nibble</button>
         </form>  
     </section>
   );
