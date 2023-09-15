@@ -23,14 +23,16 @@ const Thread = () => {
 
   return (
     <section className="flex-col h-screen w-full overflow-auto overscroll-none">
+      <section className="bg-earlgrey mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
+
       {squeek ? (
         <SqueekDisplay squeek={squeek} />
       ) : (
         <h1>Loading ...</h1>
       )}
-    {squeek.replies.map(reply => {
+    {squeek ? (squeek.replies.map(reply => {
       return (
-        <section className="my-2 mx-2 p-2 justify-center bg-toothwhite shadow-sm rounded-s ">
+        <section className=" mx-14 p-4 justify-center my-1 rounded-md bg-toothwhite border-2 border-cheeseyellow">
           {/* name and pic and hr */}
           <section className="flex justify-between items-center">
             <section className="flex justify-start py-1 items-center">
@@ -57,7 +59,10 @@ const Thread = () => {
           </section>
         </section>
       )
-    })}
+    }))
+    : <p>There aren't any replies yet</p>
+  }
+      </section>
     </section>
   );
 };
