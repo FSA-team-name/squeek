@@ -21,7 +21,18 @@ router.get('/me', checkAuth, async (req, res) => {
         photo: true,
         dateJoined: true,
         verified: true,
-        squeeks: true
+        squeeks: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
+        }
       }
     });
     res.status(200).send(user)
