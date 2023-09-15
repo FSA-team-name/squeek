@@ -17,7 +17,7 @@ const App = () => {
         <Route path='/communities' element={<Communities />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/404-notfound' element={<Notfound />} />
-        <Route path='/thread' element={<Thread />} />
+        <Route path='/thread/:id' element={<Thread />} />
         <Route path='/signup' element={<Signup />}/>
         <Route path='/login' element={<Login />}/>
       </Routes>
