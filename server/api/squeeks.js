@@ -52,6 +52,23 @@ router.get("/resqueek/:id", async (req, res) => {
   }
 });
 
+router.post('/resqueek/:id', checkAuth, async(req, res) => {
+  const { id } = req.params;
+  try {
+    const squeek = await prisma.squeek.create({
+      data: {
+        authorId: req.user,
+        text: req.body.text,
+        reSqueekId: Number(id)
+      },
+    });
+    res.status(201).send(squeek);
+  } catch (err) {
+    console.log(err)
+    res.status(400).send(err);
+  }
+})
+
 router.post("/", checkAuth, async (req, res) => {
   try {
     const squeek = await prisma.squeek.create({

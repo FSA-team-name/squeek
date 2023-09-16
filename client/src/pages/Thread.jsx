@@ -20,7 +20,7 @@ const Thread = () => {
       }
     };
     getSqueekAndReplies();
-  }, []);
+  }, [id]);
 
   return (
     <section className="flex-col h-screen w-full overflow-auto overscroll-none">
