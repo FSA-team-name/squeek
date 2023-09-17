@@ -4,6 +4,23 @@ import ReSqueek from "./ReSqueek";
 const SqueekDisplay = ({ squeek }) => {
   const squeekURL = `/squeeks/${squeek.id}`;
 
+  const reSqueekHandler = async () => {
+    try {
+      const response = await fetch (`/api/squeeks/resqueek/${squeek.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            `Bearer ${token}`,
+        },
+        body: JSON.stringify({ text: input }),
+      });
+      const data = await response.json();
+    } catch {
+      console.log(err)
+    }
+  }
+
   return (
     <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-cheeseyellow bg-toothwhite shadow-md rounded-s ">
       {/* name and pic and hr */}
