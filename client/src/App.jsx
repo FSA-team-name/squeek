@@ -14,16 +14,17 @@ import {
   Explore,
   Login,
   Notfound,
-  Modal,
 } from "./imports";
-import { useState } from "react";
+import Modal from "./components/Modal"
 import { useSelector } from "react-redux";
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
+  const showModal = useSelector((state) => state.modalState.showModal);
 
   return (
-    <section className="flex relative">
+    <section className="flex relative"> 
+      <Modal isVisible={showModal}></Modal>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

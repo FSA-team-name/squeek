@@ -1,68 +1,75 @@
+import { useDispatch } from "react-redux";
+import { setShowModal } from "../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 
 const SqueekDisplay = ({ squeek }) => {
+
+  const dispatch = useDispatch();
   const squeekURL = `/squeeks/${squeek.id}`;
 
   const reSqueekHandler = async () => {
     try {
-      const response = await fetch (`/api/squeeks/resqueek/${squeek.id}`, {
+      const response = await fetch(`/api/squeeks/resqueek/${squeek.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ text: input }),
       });
       const data = await response.json();
     } catch {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   return (
-    <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-cheeseyellow bg-toothwhite shadow-md rounded-s ">
-      {/* name and pic and hr */}
-      <section className="flex justify-between items-center">
-        <section className="flex justify-start py-1 items-center">
-          <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
-            <img className="h-full" src={squeek.author.photo} />
+    <>
+      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-cheeseyellow bg-toothwhite shadow-md rounded-s ">
+        {/* name and pic and hr */}
+        <section className="flex justify-between items-center">
+          <section className="flex justify-start py-1 items-center">
+            <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
+              <img className="h-full" src={squeek.author.photo} />
+            </section>
+            <section className="flex ml-2 bg-cheeseyellow rounded-s-sm">
+              <h2 className="px-1 font-bold text-earlgrey text-lg">
+                {squeek.author.firstName}
+              </h2>
+            </section>
+            <section className="flex px-1 bg-earlgrey rounded-e-sm">
+              <h3 className="text-cheeseyellow text-sm p-1">
+                @{squeek.author.username}
+              </h3>
+            </section>
           </section>
-          <section className="flex ml-2 bg-cheeseyellow rounded-s-sm">
-            <h2 className="px-1 font-bold text-earlgrey text-lg">
-              {squeek.author.firstName}
-            </h2>
-          </section>
-          <section className="flex px-1 bg-earlgrey rounded-e-sm">
-            <h3 className="text-cheeseyellow text-sm p-1">
-              @{squeek.author.username}
-            </h3>
-          </section>
-        </section>
-        {/* <section>
+          {/* <section>
           <p>2h</p>
         </section> */}
-      </section>
-      <Link to={squeekURL}>
-        <section className="py-2">
-          <p className="whitespace-pre-line font-medium text-earlgrey">
-            {squeek.text}
-          </p>
         </section>
-      </Link>
-      {squeek.reSqueekId ? (
-        <section className="m-4">
-          <ReSqueek squeekID={squeek.reSqueekId} />
-        </section>
-      ) : null}
-      <section className="border-t-2 border-t-cheeseyellow"></section>
-      <section className="text-xs text-earlgrey py-1">
-        <p>{squeek.dateTimeCreated}</p>
-      </section>
-      <section className="flex gap-x-6 flex-row">
         <Link to={squeekURL}>
-          <section className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 ">
+          <section className="py-2">
+            <p className="whitespace-pre-line font-medium text-earlgrey">
+              {squeek.text}
+            </p>
+          </section>
+        </Link>
+        {squeek.reSqueekId ? (
+          <section className="m-4">
+            <ReSqueek squeekID={squeek.reSqueekId} />
+          </section>
+        ) : null}
+        <section className="border-t-2 border-t-cheeseyellow"></section>
+        <section className="text-xs text-earlgrey py-1">
+          <p>{squeek.dateTimeCreated}</p>
+        </section>
+        <section className="flex gap-x-6 flex-row">
+          {/* <Link to={squeekURL}> */}
+          <section
+            onClick={() => dispatch(setShowModal(true))}
+            className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -75,22 +82,23 @@ const SqueekDisplay = ({ squeek }) => {
               />
             </svg>
           </section>
-        </Link>
-        <section className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="fill-cheeseyellow w-6 h-6"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12 5.25c1.213 0 2.415.046 3.605.135a3.256 3.256 0 013.01 3.01c.044.583.077 1.17.1 1.759L17.03 8.47a.75.75 0 10-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 00-1.06-1.06l-1.752 1.751c-.023-.65-.06-1.296-.108-1.939a4.756 4.756 0 00-4.392-4.392 49.422 49.422 0 00-7.436 0A4.756 4.756 0 003.89 8.282c-.017.224-.033.447-.046.672a.75.75 0 101.497.092c.013-.217.028-.434.044-.651a3.256 3.256 0 013.01-3.01c1.19-.09 2.392-.135 3.605-.135zm-6.97 6.22a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.752-1.751c.023.65.06 1.296.108 1.939a4.756 4.756 0 004.392 4.392 49.413 49.413 0 007.436 0 4.756 4.756 0 004.392-4.392c.017-.223.032-.447.046-.672a.75.75 0 00-1.497-.092c-.013.217-.028.434-.044.651a3.256 3.256 0 01-3.01 3.01 47.953 47.953 0 01-7.21 0 3.256 3.256 0 01-3.01-3.01 47.759 47.759 0 01-.1-1.759L6.97 15.53a.75.75 0 001.06-1.06l-3-3z"
-              clipRule="evenodd"
-            />
-          </svg>
+          {/* </Link> */}
+          <section className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="fill-cheeseyellow w-6 h-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 5.25c1.213 0 2.415.046 3.605.135a3.256 3.256 0 013.01 3.01c.044.583.077 1.17.1 1.759L17.03 8.47a.75.75 0 10-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 00-1.06-1.06l-1.752 1.751c-.023-.65-.06-1.296-.108-1.939a4.756 4.756 0 00-4.392-4.392 49.422 49.422 0 00-7.436 0A4.756 4.756 0 003.89 8.282c-.017.224-.033.447-.046.672a.75.75 0 101.497.092c.013-.217.028-.434.044-.651a3.256 3.256 0 013.01-3.01c1.19-.09 2.392-.135 3.605-.135zm-6.97 6.22a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.752-1.751c.023.65.06 1.296.108 1.939a4.756 4.756 0 004.392 4.392 49.413 49.413 0 007.436 0 4.756 4.756 0 004.392-4.392c.017-.223.032-.447.046-.672a.75.75 0 00-1.497-.092c-.013.217-.028.434-.044.651a3.256 3.256 0 01-3.01 3.01 47.953 47.953 0 01-7.21 0 3.256 3.256 0 01-3.01-3.01 47.759 47.759 0 01-.1-1.759L6.97 15.53a.75.75 0 001.06-1.06l-3-3z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </section>
         </section>
       </section>
-    </section>
+    </>
   );
 };
 

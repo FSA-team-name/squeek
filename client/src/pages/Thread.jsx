@@ -24,8 +24,8 @@ const Thread = () => {
 
   return (
     <section className="flex-col h-screen w-full overflow-auto overscroll-none">
-      <section className="bg-toothwhite mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
         {squeek ? <SqueekDisplay squeek={squeek} /> : <h1>Loading ...</h1>}
+      <section className="bg-toothwhite mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
         {token && squeek ? <MakeReply id={squeek.id} squeek={squeek} setSqueek={setSqueek} /> : null}
         {squeek ? (
           squeek.replies.map((reply) => {
