@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setShowModal } from "../redux/modalSlice";
+import { setReplyModal } from "../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 
@@ -67,7 +67,7 @@ const SqueekDisplay = ({ squeek }) => {
         <section className="flex gap-x-6 flex-row">
           {/* <Link to={squeekURL}> */}
           <section
-            onClick={() => dispatch(setShowModal(true))}
+            onClick={() => dispatch(setReplyModal({squeek: squeek.id}))}
             className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg

@@ -19,12 +19,13 @@ import Modal from "./components/Modal"
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const token = useSelector((state) => state.userToken.token);
-  const showModal = useSelector((state) => state.modalState.showModal);
+  const showReplyModal = useSelector((state) => state.modalState.replyModal);
+  const squeek = useSelector((state) => state.modalState.squeek);
+
 
   return (
     <section className="flex relative"> 
-      <Modal isVisible={showModal}></Modal>
+      <Modal isVisible={showReplyModal}>{squeek}</Modal>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
