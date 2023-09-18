@@ -7,13 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        earlgrey: 'rgb(85, 83, 83)',
+        earlgrey: 'rgb(85, 84, 82)',
         mickeygrey: 'rgb(193, 193, 193)',
         cheeseyellow: 'rgb(253, 204, 75)',
         toothwhite: 'rgb(250, 250, 250)',
-        backgroundgrey: 'rgb(207, 207, 207)',
-        blue: 'rgb(37 99 235)'
-      }
+        backgroundgrey: 'rgb(230, 233, 235)',
+      },
+      scale: {
+        '-100': '-1',
+    }
     }
   },
   plugins: [],
