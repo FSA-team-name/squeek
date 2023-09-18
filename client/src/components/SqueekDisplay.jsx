@@ -67,7 +67,7 @@ const SqueekDisplay = ({ squeek }) => {
         <section className="flex gap-x-6 flex-row">
           {/* <Link to={squeekURL}> */}
           <section
-            onClick={() => dispatch(setReplyModal({squeek: squeek.id}))}
+            onClick={() => dispatch(setReplyModal({squeek: squeek}))}
             className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg

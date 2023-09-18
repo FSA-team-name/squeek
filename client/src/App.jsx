@@ -25,7 +25,11 @@ const App = () => {
 
   return (
     <section className="flex relative"> 
-      <Modal isVisible={showReplyModal}>{squeek}</Modal>
+      <Modal 
+        squeek={squeek}
+        isVisible={showReplyModal}
+      >
+      </Modal>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
