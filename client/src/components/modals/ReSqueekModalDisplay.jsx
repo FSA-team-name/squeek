@@ -13,14 +13,13 @@ const ReSqueekModalDisplay = ({ squeek }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const postReply = async (input) => {
+  const postReSqueek = async (input) => {
     try {
-      const response = await fetch(`/api/squeeks/${squeek.id}/reply`, {
+      const response = await fetch(`/api/squeeks/resqueek/${squeek.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ text: input }),
       });
@@ -29,34 +28,32 @@ const ReSqueekModalDisplay = ({ squeek }) => {
     }
   };
 
-
   const formHandler = async (e) => {
     e.preventDefault();
     if (squeekInput.length === 0) {
-      return
+      return;
     }
-    await postReply(squeekInput);
+    await postReSqueek(squeekInput);
     setSqueekInput("");
     setCharacterCount(0);
     dispatch(resetModal());
-    navigate(`/squeeks/${squeek.id}`)
+    navigate("/");
   };
-
 
   return (
     <>
-    <section className="p-2 bg-toothwhite">
-      <InputBox 
-        formHandler={formHandler} 
-        squeekInput={squeekInput}
-        setSqueekInput={setSqueekInput}
-        characterCount={characterCount}
-        setCharacterCount={setCharacterCount}
-        placeholder='Add your thoughts to this Squeek'
-        action='ReSqueek'
-      />
-      <NoActionsSqueekDisplay squeek={squeek} />
-    </section>
+      <section className="p-2 bg-toothwhite">
+        <InputBox
+          formHandler={formHandler}
+          squeekInput={squeekInput}
+          setSqueekInput={setSqueekInput}
+          characterCount={characterCount}
+          setCharacterCount={setCharacterCount}
+          placeholder="Add your thoughts to this Squeek"
+          action="ReSqueek"
+        />
+        <NoActionsSqueekDisplay squeek={squeek} />
+      </section>
     </>
   );
 };
