@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore, Login, Notfound } from './imports';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import EditProfile from './components/EditProfile';
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/message' element={<Message />}/>
         <Route path='/favorites' element={<Favorites />}/>
         <Route path='/communities' element={<Communities />}/>
+        <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path='/profile' element={<Profile />}/>
         <Route path='/404-notfound' element={<Notfound />} />
         <Route path='/thread' element={<Thread />} />

@@ -15,6 +15,8 @@ router.get('/me', checkAuth, async (req, res) => {
     const user = await prisma.user.findUnique({
       where: {id: req.user},
       select: {
+        id: true,
+        bio: true,
         username: true,
         firstName: true,
         lastName: true,
@@ -65,6 +67,24 @@ router.get('/:username', async (req, res) => {
     console.log(err);
   }
 })
+
+router.put("/:id", async (req, res) => {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: req.body,
+    });
+    if (!user) {
+      res.status(404).send({ error: true, message: "User Not Found" });
+    } else {
+      res.status(201).send(user);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 
 module.exports = router;
