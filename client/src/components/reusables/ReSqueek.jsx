@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NoActionsSqueekDisplay from "./reusables/NoActionsSqueekDisplay";
+import NoActionsSqueekDisplay from "./NoActionsSqueekDisplay";
 
 const ReSqueek = ({ squeekID }) => {
   const [reSqueek, setReSqueek] = useState();

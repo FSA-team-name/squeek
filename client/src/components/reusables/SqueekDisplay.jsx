@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setReplyModal, setReSqueekModal } from "../redux/modalSlice";
+import { setReplyModal, setReSqueekModal } from "../../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 

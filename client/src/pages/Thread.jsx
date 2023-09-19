@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import SqueekDisplay from "../components/SqueekDisplay";
+import SqueekDisplay from "../components/reusables/SqueekDisplay";
 import MakeReply from "../components/MakeReply";
 import ReplyDisplay from "../components/reusables/ReplyDisplay";
 

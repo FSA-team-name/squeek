@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SqueekDisplay from "../components/SqueekDisplay";
+import SqueekDisplay from "../components/reusables/SqueekDisplay";
 import MakeSqueeks from "../components/MakeSqueeks";
 import Modal from "../components/modals/Modal";
 import { useSelector } from "react-redux";
