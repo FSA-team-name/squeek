@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setReplyModal, resetReplyModal } from "../redux/modalSlice";
+import { setReplyModal, resetReplyModal } from "../../redux/modalSlice";
 
 const Modal = ({ isVisible, children }) => {
   if (!isVisible) return null;
@@ -13,7 +13,7 @@ const Modal = ({ isVisible, children }) => {
   return (
     <section 
       id="wrapper"
-      className="fixed inset-0 backdrop-blur-sm flex justify-center z-10"
+      className="fixed inset-0 items-center backdrop-blur-sm flex justify-center z-10"
       onClick={handleClose}
     >
       <section 

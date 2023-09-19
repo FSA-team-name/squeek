@@ -15,8 +15,9 @@ import {
   Login,
   Notfound,
 } from "./imports";
-import Modal from "./components/Modal"
+import Modal from "./components/modals/Modal"
 import { useSelector } from "react-redux";
+import ReplyModalDisplay from "./components/modals/ReplyModalDisplay";
 
 const App = () => {
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
@@ -26,9 +27,9 @@ const App = () => {
   return (
     <section className="flex relative"> 
       <Modal 
-        squeek={squeek}
         isVisible={showReplyModal}
       >
+        <ReplyModalDisplay squeek={squeek} />
       </Modal>
       <Navbar />
       <Routes>

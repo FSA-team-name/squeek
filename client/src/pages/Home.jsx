@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SqueekDisplay from "../components/SqueekDisplay";
 import MakeSqueeks from "../components/MakeSqueeks";
-import Modal from "../components/Modal";
+import Modal from "../components/modals/Modal";
 import { useSelector } from "react-redux";
 
 const Home = () => {
