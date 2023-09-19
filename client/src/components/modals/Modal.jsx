@@ -13,12 +13,12 @@ const Modal = ({ isVisible, children }) => {
   return (
     <section 
       id="wrapper"
-      className="fixed inset-0 items-center backdrop-blur-sm flex justify-center z-10"
+      className="fixed inset-0 backdrop-blur-sm flex justify-center z-10"
       onClick={handleClose}
     >
       <section 
         id="wrapper"
-        className="flex flex-col w-1/2"
+        className="flex flex-col w-1/2 my-20"
       >
         <button 
           onClick={() => dispatch(resetReplyModal())}
