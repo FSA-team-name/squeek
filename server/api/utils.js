@@ -3,7 +3,7 @@ const checkAuth = (req, res, next) => {
       next();
     }
     else{
-      res.status(401).send({message: "User unauthorized"});
+      res.status(401).send({message: "You need to be logged in to do that."});
     }
   }
   

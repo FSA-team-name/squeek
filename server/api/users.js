@@ -55,7 +55,18 @@ router.get('/:username', async (req, res) => {
         photo: true,
         dateJoined: true,
         verified: true,
-        squeeks: true
+        squeeks: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
+        }
       }
     });
     if (user) {

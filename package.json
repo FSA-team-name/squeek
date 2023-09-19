@@ -12,7 +12,8 @@
     "client:build": "cd client && npm run build",
     "build:dev": "cd client && npm run build && cd .. && nodemon server/index.js",
     "migrate:prisma": "npx prisma migrate reset && npx prisma migrate dev && node prisma/seed.js",
-    "build": "npm i && cd client && npm i && npm run build"
+    "build": "npm i && cd client && npm i && npm run build",
+    "nuke": "rm -rf node_modules package-lock.json && cd client && rm -rf node_modules package-lock.json"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -21,6 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@esbuild/darwin-x64": "^0.19.3",
     "@prisma/client": "^5.2.0",
     "badge-maker": "^3.3.1",
     "bcryptjs": "^2.4.3",
