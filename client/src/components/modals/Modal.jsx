@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setReplyModal, resetReplyModal } from "../../redux/modalSlice";
+import { resetModal } from "../../redux/modalSlice";
 
 const Modal = ({ isVisible, children }) => {
   if (!isVisible) return null;
@@ -7,7 +7,8 @@ const Modal = ({ isVisible, children }) => {
   const dispatch = useDispatch();
 
   const handleClose = (e) => {
-    if (e.target.id === 'wrapper') dispatch(resetReplyModal());
+    const targetCheck = e.target.id === 'wrapper';
+    if (e.target.id === 'wrapper') dispatch(resetModal());
   }
 
   return (
@@ -21,7 +22,7 @@ const Modal = ({ isVisible, children }) => {
         className="flex flex-col w-1/2 my-20"
       >
         <button 
-          onClick={() => dispatch(resetReplyModal())}
+          onClick={() => dispatch(resetModal())}
           className="text-earlgrey text-xl place-self-end"
         >X</button>
         <section className="bg-cheeseyellow p-2 rounded-sm">{children}</section>

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setReplyModal } from "../redux/modalSlice";
+import { setReplyModal, setReSqueekModal } from "../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 
@@ -7,22 +7,6 @@ const SqueekDisplay = ({ squeek }) => {
 
   const dispatch = useDispatch();
   const squeekURL = `/squeeks/${squeek.id}`;
-
-  const reSqueekHandler = async () => {
-    try {
-      const response = await fetch(`/api/squeeks/resqueek/${squeek.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ text: input }),
-      });
-      const data = await response.json();
-    } catch {
-      console.log(err);
-    }
-  };
 
   return (
     <>
@@ -83,7 +67,10 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           {/* </Link> */}
-          <section className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 ">
+          <section 
+            onClick={() => dispatch(setReSqueekModal({squeek: squeek}))}
+            className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

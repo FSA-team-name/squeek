@@ -6,7 +6,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import InputBox from "../reusables/InputBox";
 import NoActionsSqueekDisplay from "../reusables/NoActionsSqueekDisplay";
 
-const ReplyModalDisplay = ({ squeek }) => {
+const ReSqueekModalDisplay = ({ squeek }) => {
   const token = useSelector((state) => state.userToken.token);
   const [squeekInput, setSqueekInput] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
@@ -45,18 +45,20 @@ const ReplyModalDisplay = ({ squeek }) => {
 
   return (
     <>
-      <NoActionsSqueekDisplay squeek={squeek} />
+    <section className="p-2 bg-toothwhite">
       <InputBox 
         formHandler={formHandler} 
         squeekInput={squeekInput}
         setSqueekInput={setSqueekInput}
         characterCount={characterCount}
         setCharacterCount={setCharacterCount}
-        placeholder='Nibble this Squeek'
-        action='Nibble'
+        placeholder='Add your thoughts to this Squeek'
+        action='ReSqueek'
       />
+      <NoActionsSqueekDisplay squeek={squeek} />
+    </section>
     </>
   );
 };
 
-export default ReplyModalDisplay;
+export default ReSqueekModalDisplay;
