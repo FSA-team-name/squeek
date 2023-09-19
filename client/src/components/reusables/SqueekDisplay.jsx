@@ -52,12 +52,12 @@ const SqueekDisplay = ({ squeek }) => {
           {/* <Link to={squeekURL}> */}
           <section
             onClick={() => dispatch(setReplyModal({squeek: squeek}))}
-            className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow w-6 h-6"
+              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -69,12 +69,12 @@ const SqueekDisplay = ({ squeek }) => {
           {/* </Link> */}
           <section 
             onClick={() => dispatch(setReSqueekModal({squeek: squeek}))}
-            className="flex bg-earlgrey items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow w-6 h-6"
+              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
             >
               <path
                 fillRule="evenodd"
