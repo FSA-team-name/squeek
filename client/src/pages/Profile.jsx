@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import EditProfile from "../components/EditProfile";
-import SqueekDisplay from '../components/SqueekDisplay'
+import SqueekDisplay from '../components/reusables/SqueekDisplay'
 import { Link, useNavigate } from "react-router-dom";
+import ReplyDisplay from "../components/reusables/ReplyDisplay";
 
-const Profile = () => {
+const Profile = ({squeek}) => {
   const [user, setUser] = useState([]);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [displaySqueeks, setDisplaySqueeks] = useState(true); 
+  const [displayNibbles, setDisplayNibbles] = useState(false);
   const token = useSelector((state) => state.userToken.token);
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,8 +24,6 @@ const Profile = () => {
         if (response.ok) {
           const data = await response.json();
           setUser(data);
-
-          console.log("User data in Profile:", data);
         } else {
           console.error("Error fetching user data");
         }
@@ -39,7 +40,17 @@ const Profile = () => {
     setIsEditingProfile(false);
     navigate("/profile");
   };
+
+  const handleSqueeksClick = () => {
+    setDisplaySqueeks(true);
+    setDisplayNibbles(false);
+  };
  
+  const handleNibblesClick = () => {
+    setDisplaySqueeks(false);
+    setDisplayNibbles(true);
+  };
+
   return (
     <div className="bg-earlgrey dark:bg-gray-900 w-full">
       <main className="container mx-auto mt-6 p-4">
@@ -93,8 +104,18 @@ const Profile = () => {
             </div>
 
             <div className="flex justify-between p-4">
-              <Link to="/squeeks" className="text-blue-500 hover:underline">Squeeks</Link>
-              <Link to="/nibbles" className="text-blue-500 hover:underline">Nibbles</Link>
+              <button
+                onClick={handleSqueeksClick}
+                className="text-blue-500 hover:underline"
+              >
+                Squeeks
+              </button>
+              <button
+                onClick={handleNibblesClick}
+                className="text-blue-500 hover:underline"
+              >
+                Nibbles
+              </button>
             </div>
             <hr className="border-b-2 border-gray-800" />
 
@@ -107,12 +128,21 @@ const Profile = () => {
                       </div>
                       <p className="text-gray-800 dark:text-gray-200">
                       </p>
-                      {user.squeeks ? user.squeeks.map((squeek, i) => {
-                        return (
+                      {displaySqueeks && user.squeeks ? (
+                        user.squeeks.map((squeek, i) => (
                           <SqueekDisplay key={i} squeek={squeek} />
-                        )
-                      }) : ""}
-                      {/* NEED TO ORDER NEWEST TO OLDEST */}
+                        ))
+                      ) : (
+                        ""
+                      )}
+
+                      {displayNibbles && user.replies ? (
+                        user.replies.map((reply, i) => (
+                          <ReplyDisplay key={i} reply={reply} />  
+                        ))
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>
@@ -123,12 +153,9 @@ const Profile = () => {
           <p>Loading...</p>
         )}
 
-
-    {isEditingProfile && (
-      <EditProfile
-        updateUserProfile={updateUserProfile}
-      />
-    )}
+        {isEditingProfile && (
+          <EditProfile updateUserProfile={updateUserProfile} />
+        )}
       </main>
     </div>
   );

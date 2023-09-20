@@ -34,6 +34,18 @@ router.get('/me', checkAuth, async (req, res) => {
               }
             }
           }
+        },
+        replies: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
         }
       }
     });

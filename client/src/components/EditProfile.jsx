@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import StyledForm from "./StyledForm";
+import StyledForm from "./reusables/StyledForm";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -31,8 +31,6 @@ const EditProfile = () => {
         if (response.ok) {
           const data = await response.json();
           setUser(data);
-
-          console.log("User data in Profile:", data);
         } else {
           console.error("Error fetching user data");
         }
