@@ -9,13 +9,25 @@ router.get("/", (req, res) => {
   res.send("reactions router working");
 });
 
-router.post("/", checkAuth, (req, res) => {
-  const { squeekId, like } = req.body;
-  let trueOrFalse = false;
-  like ? trueOrFalse = false : trueOrFalse = true;
+router.post("/", checkAuth, async (req, res) => {
+  const { squeekId, replyId, like } = req.body;
+  const dislike = like ? false : true;
+  const isSqueekId = squeekId ? squeekId : null;
+  const isReplyId = replyId ? replyId : null;
   try {
-    console.log(trueOrFalse);
-  } catch (err) {}
+   const reaction = await prisma.reaction.create({
+      data: {
+        like: like,
+        dislike: dislike,
+        authorId: req.user,
+        squeekId: isSqueekId,
+        replyId: isReplyId
+      }
+    });
+    res.status(201).send(reaction);
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 module.exports = router;
