@@ -5,8 +5,17 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-router.get("/", (req, res) => {
-  res.send("reactions router working");
+router.get("/", checkAuth, async (req, res) => {
+  try {
+    const reactions = await prisma.reaction.findMany({
+      where: {
+        authorId: req.user
+      }
+    })
+    res.send(reactions)
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 router.post("/", checkAuth, async (req, res) => {
@@ -24,7 +33,7 @@ router.post("/", checkAuth, async (req, res) => {
     res.status(201).send(reaction);
   } catch (err) {
     console.log(err)
-    res.status(500).send("You can't react to something twice")
+    res.status(500).send("You can't react to something more than once")
   }
 });
 
