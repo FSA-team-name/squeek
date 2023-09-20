@@ -53,20 +53,16 @@ model Reply {
   authorId        Int
   squeek          Squeek     @relation(fields: [squeekId], references: [id])
   squeekId        Int
-  Reaction        Reaction[]
 }
 
 model Reaction {
-  id       Int     @id @default(autoincrement())
   like     Boolean @default(false)
   dislike  Boolean @default(false)
   author   User    @relation(fields: [authorId], references: [id])
   authorId Int
-  squeek   Squeek? @relation(fields: [squeekId], references: [id])
-  squeekId Int?
-  reply    Reply?  @relation(fields: [replyId], references: [id])
-  replyId  Int?
-  @@unique([authorId, squeekId, replyId])
+  squeek   Squeek @relation(fields: [squeekId], references: [id])
+  squeekId Int
+  @@unique([authorId, squeekId])
 }
 
 model Favorite {

@@ -109,7 +109,7 @@ const seed = async () => {
     {
       dislike: true,
       authorId: 1,
-      replyId: 3
+      squeekId: 3
     },
     {
       like: true,
@@ -124,7 +124,7 @@ const seed = async () => {
     {
       like: true,
       authorId: 3,
-      replyId: 2
+      squeekId: 2
     }
   ]
   });

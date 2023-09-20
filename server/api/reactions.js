@@ -10,23 +10,21 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", checkAuth, async (req, res) => {
-  const { squeekId, replyId, like } = req.body;
+  const { squeekId, like } = req.body;
   const dislike = like ? false : true;
-  const isSqueekId = squeekId ? squeekId : null;
-  const isReplyId = replyId ? replyId : null;
   try {
    const reaction = await prisma.reaction.create({
       data: {
         like: like,
         dislike: dislike,
         authorId: req.user,
-        squeekId: isSqueekId,
-        replyId: isReplyId
+        squeekId: squeekId,
       }
     });
     res.status(201).send(reaction);
   } catch (err) {
     console.log(err)
+    res.status(500).send("You can't react to something twice")
   }
 });
 
