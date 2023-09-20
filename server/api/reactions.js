@@ -18,8 +18,9 @@ router.get("/", checkAuth, async (req, res) => {
   }
 });
 
-router.post("/", checkAuth, async (req, res) => {
-  const { squeekId, like } = req.body;
+router.post("/:id", checkAuth, async (req, res) => {
+  const { id } = req.params;
+  const { like } = req.body;
   const dislike = like ? false : true;
   try {
    const reaction = await prisma.reaction.create({
@@ -27,7 +28,7 @@ router.post("/", checkAuth, async (req, res) => {
         like: like,
         dislike: dislike,
         authorId: req.user,
-        squeekId: squeekId,
+        squeekId: Number(id),
       }
     });
     res.status(201).send(reaction);

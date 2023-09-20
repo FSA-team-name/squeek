@@ -1,11 +1,27 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setReplyModal, setReSqueekModal } from "../../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 
 const SqueekDisplay = ({ squeek }) => {
+  const token = useSelector((state) => state.userToken.token);
   const dispatch = useDispatch();
   const squeekURL = `/squeeks/${squeek.id}`;
+
+  const sendReaction = async (reaction) => {
+    try {
+      const response = await fetch (`/api/reactions/${squeek.id}` , {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ like: reaction })
+      })
+    } catch (err) {
+
+    }
+  }
 
   return (
     <>
@@ -56,7 +72,7 @@ const SqueekDisplay = ({ squeek }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
+              className="fill-cheeseyellow w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -73,7 +89,7 @@ const SqueekDisplay = ({ squeek }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
+              className="fill-cheeseyellow w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -83,8 +99,8 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           <section
-            onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+            onClick={() => sendReaction(true)}
+            className="flex cursor-pointer bg-earlgrey hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,13 +115,13 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           <section
-            onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+            onClick={() => sendReaction(false)}
+            className="flex cursor-pointer bg-earlgrey hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-red-500 hover:fill-red-400 w-6 h-6"
+              className="fill-red-500 w-6 h-6"
             >
               <path
                 fillRule="evenodd"
