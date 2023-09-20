@@ -21,9 +21,12 @@ model User {
   phone      String?
   dateJoined DateTime   @default(now())
   verified   Boolean    @default(false)
+  following  Int[]
+  followers  Int[]
   squeeks    Squeek[]
   replies    Reply[]
   reactions  Reaction[]
+  Favorite   Favorite[]
 }
 
 model Squeek {
@@ -38,6 +41,7 @@ model Squeek {
   replies         Reply[]
   reactions       Reaction[]
   tags            Tag[]
+  Favorite        Favorite[]
 }
 
 model Reply {
@@ -63,6 +67,14 @@ model Reaction {
   reply    Reply?  @relation(fields: [replyId], references: [id])
   replyId  Int?
   @@unique([authorId, squeekId, replyId])
+}
+
+model Favorite {
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId Int
+  squeek   Squeek @relation(fields: [squeekId], references: [id])
+  squeekId Int
+  @@unique([authorId, squeekId])
 }
 
 model Tag {
