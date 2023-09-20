@@ -1,5 +1,12 @@
+import { Link } from "react-router-dom";
+
+
 const ReplyDisplay = ({ reply }) => {
+  const squeekURL = `/squeeks/${reply.squeekId}`;
+
+                              
   return (
+    <Link to={squeekURL}>
     <section className=" mx-14 p-4 justify-center my-1 rounded-md bg-toothwhite border-2 border-cheeseyellow">
                 {/* name and pic and hr */}
                 <section className="flex justify-between items-center">
@@ -28,6 +35,7 @@ const ReplyDisplay = ({ reply }) => {
                   <p>{reply.dateTimeCreated}</p>
                 </section>
               </section>
+              </Link>
   )
 }
 

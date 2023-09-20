@@ -18,6 +18,7 @@ model User {
   firstName  String
   lastName   String
   photo      String
+  bio        String?
   phone      String?
   dateJoined DateTime   @default(now())
   verified   Boolean    @default(false)

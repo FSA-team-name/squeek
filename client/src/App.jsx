@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import Modal from "./components/modals/Modal";
 import ReplyModalDisplay from "./components/modals/ReplyModalDisplay";
 import ReSqueekModalDisplay from "./components/modals/ReSqueekModalDisplay";
+import EditProfile from "./components/EditProfile";
 
 const App = () => {
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
@@ -37,11 +38,13 @@ const App = () => {
       </Modal>
       <Navbar />
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/message" element={<Message />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/communities" element={<Communities />} />
+        <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/404-notfound" element={<Notfound />} />
         <Route path="/squeeks/:id" element={<Thread />} />
