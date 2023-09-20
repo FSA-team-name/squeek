@@ -21,6 +21,8 @@ model User {
   phone      String?
   dateJoined DateTime   @default(now())
   verified   Boolean    @default(false)
+  following  Int[]
+  followers  Int[]
   squeeks    Squeek[]
   replies    Reply[]
   reactions  Reaction[]
