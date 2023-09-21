@@ -43,12 +43,14 @@ const Navbar = () => {
             <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Messages</h1>
           </Link>
           </li>
+          {token ? ( 
           <li className={`text-earlgrey flex items-center gap-x-4 p-2 hover:bg-mickeygrey rounded-md mt-2`}>
           <Link to="/favorites">
             <i className='bi-bookmark'></i>
             <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Favorites</h1>
           </Link>
           </li>
+          ): null}
           <li className={`text-earlgrey flex items-center gap-x-4 p-2 hover:bg-mickeygrey rounded-md mt-2`}>
           <Link to="/communities">
             <i className='bi-people'></i>
