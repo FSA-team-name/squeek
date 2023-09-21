@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 
 
 router.get("/myFavorites", checkAuth, async (req, res) => {
+  const user = req.user ? req.user : 0;
   try {
     const userId = req.user;
     const favorites = await prisma.favorite.findMany({
@@ -27,6 +28,9 @@ router.get("/myFavorites", checkAuth, async (req, res) => {
                 photo: true,
               },
             },
+            reactions: {
+              where: {authorId: user}
+             }
           },
         },
       },
