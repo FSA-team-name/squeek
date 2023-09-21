@@ -16,13 +16,37 @@ router.get('/me', checkAuth, async (req, res) => {
       where: {id: req.user},
       select: {
         id: true,
+        bio: true,
         username: true,
         firstName: true,
         lastName: true,
         photo: true,
         dateJoined: true,
         verified: true,
-        squeeks: true
+        squeeks: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
+        },
+        replies: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
+        }
       }
     });
     res.status(200).send({id: user.id, username: user.username})
@@ -43,7 +67,18 @@ router.get('/:username', async (req, res) => {
         photo: true,
         dateJoined: true,
         verified: true,
-        squeeks: true
+        squeeks: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
+            }
+          }
+        }
       }
     });
     if (user) {
@@ -55,6 +90,24 @@ router.get('/:username', async (req, res) => {
     console.log(err);
   }
 })
+
+router.put("/:id", async (req, res) => {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: req.body,
+    });
+    if (!user) {
+      res.status(404).send({ error: true, message: "User Not Found" });
+    } else {
+      res.status(201).send(user);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 
 module.exports = router;

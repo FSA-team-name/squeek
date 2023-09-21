@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import InputBox from "./reusables/InputBox";
 
-const MakeSqueeks = ({ squeeks, setSqueeks }) => {
+const MakeReply = ({ squeek, setSqueek, id }) => {
   const token = useSelector((state) => state.userToken.token);
   const [squeekInput, setSqueekInput] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
 
-  const postSqueek = async (input) => {
+  const postReply = async (input) => {
     try {
-      const response = await fetch("/api/squeeks", {
+      const response = await fetch(`/api/squeeks/${id}/reply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,17 +18,16 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
         },
         body: JSON.stringify({ text: input }),
       });
-      const data = await response.json();
     } catch (err) {
       console.log(err);
     }
   };
 
-  const getSqueeks = async () => {
+  const getSqueek = async () => {
     try {
-      const response = await fetch("/api/squeeks");
+      const response = await fetch(`/api/squeeks/${id}`);
       const data = await response.json();
-      await setSqueeks(data);
+      await setSqueek(data);
     } catch (err) {
       console.log(err);
     }
@@ -39,23 +38,23 @@ const MakeSqueeks = ({ squeeks, setSqueeks }) => {
     if (squeekInput.length === 0) {
       return
     }
-    await postSqueek(squeekInput);
+    await postReply(squeekInput);
     setSqueekInput("");
     setCharacterCount(0)
-    await getSqueeks();
+    await getSqueek();
   };
 
   return (
     <InputBox
-          formHandler={formHandler}
-          squeekInput={squeekInput}
-          setSqueekInput={setSqueekInput}
-          characterCount={characterCount}
-          setCharacterCount={setCharacterCount}
-          placeholder="Squeek up!"
-          action="Squeek"
-        />
+    formHandler={formHandler}
+    squeekInput={squeekInput}
+    setSqueekInput={setSqueekInput}
+    characterCount={characterCount}
+    setCharacterCount={setCharacterCount}
+    placeholder="Nibble on this Squeek"
+    action="Nibble"
+  />
   );
 };
 
-export default MakeSqueeks;
+export default MakeReply;

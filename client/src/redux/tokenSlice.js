@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: null,
@@ -7,17 +7,17 @@ const initialState = {
 }
 
 export const tokenSlice = createSlice({
-  name: 'token',
+  name: "token",
   initialState,
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload.token,
-      state.id = action.payload.id,
-      state.username = action.payload.username
+      state.token = action.payload.token;
+      state.id = action.payload.id;
+      state.username = action.payload.username;
     },
   },
-})
+});
 
-export const { setToken } = tokenSlice.actions
+export const { setToken } = tokenSlice.actions;
 
-export default tokenSlice.reducer
+export default tokenSlice.reducer;
