@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setReplyModal, setReSqueekModal } from "../../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
+import DislikeInactive from "./DislikeInactive";
+import DislikeActive from "./DislikeActive";
+import LikeInactive from "./LikeInactive";
+import LikeActive from "./LikeActive";
 
 const SqueekDisplay = ({ squeek }) => {
   if (!squeek) return null;
@@ -12,25 +16,32 @@ const SqueekDisplay = ({ squeek }) => {
 
   const sendReaction = async (reaction) => {
     try {
-      const response = await fetch (`/api/reactions/${squeek.id}` , {
+      const response = await fetch(`/api/reactions/${squeek.id}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${token}`
+          authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ like: reaction })
-      })
-      const data = await response.json()
-      return data
+        body: JSON.stringify({ like: reaction }),
+      });
+      const data = await response.json();
+      return data;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
-  const reactionHandler = async (reaction) => {
-    const response = await sendReaction(reaction);
-    squeek.reactions.push(reaction);
-  }
+  const activeHandler = async (reaction) => {
+    // const response = await sendReaction(reaction);
+    // squeek.reactions.push(reaction);
+    console.log(reaction)
+  };
+
+  const inactiveHandler = async (reaction) => {
+    // const response = await sendReaction(reaction);
+    // squeek.reactions.push(reaction);
+    console.log(reaction)
+  };
 
   return (
     <>
@@ -139,8 +150,20 @@ const SqueekDisplay = ({ squeek }) => {
               />
             </svg>
           </section>
-          {squeek.reactions.find(({ authorId, like, dislike }) => authorId === userId && like === true && dislike === false) ? 'true' : 'false'}
-          {squeek.reactions.find(({ authorId, like, dislike }) => authorId === userId && like === false && dislike === true) ? 'true' : 'false'}
+          {squeek.reactions.find(
+            ({ authorId, like, dislike }) =>
+              authorId === userId && like === true && dislike === false
+          ) ? (
+            <LikeActive />
+          ) : (
+            <LikeInactive inactiveHandler={inactiveHandler} />
+          )}
+          {squeek.reactions.find(
+            ({ authorId, like, dislike }) =>
+              authorId === userId && like === false && dislike === true
+          )
+            ? <DislikeActive />
+            : <DislikeInactive inactiveHandler={inactiveHandler} />}
         </section>
       </section>
     </>
