@@ -36,7 +36,7 @@ const Home = () => {
             return <SqueekDisplay key={i} squeek={squeek} />;
           })
         ) : (
-          <h1>Loading ...</h1>
+          <h1 className='text-content'>Loading ...</h1>
         )}
       </section>
     </>

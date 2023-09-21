@@ -42,7 +42,7 @@ const ReSqueekModalDisplay = ({ squeek }) => {
 
   return (
     <>
-      <section className="p-2 bg-toothwhite">
+      <section className="p-2 bg-comp">
         <InputBox
           formHandler={formHandler}
           squeekInput={squeekInput}
