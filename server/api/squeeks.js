@@ -6,6 +6,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
+  const user = req.user ? req.user : 0;
+  console.log(user)
   try {
     const posts = await prisma.squeek.findMany({
       include: {
@@ -17,6 +19,9 @@ router.get("/", async (req, res) => {
             verified: true,
           },
         },
+        reactions: {
+         where: {authorId: user}
+        }
       },
       orderBy: {
         id: "desc",
@@ -85,6 +90,7 @@ router.post("/", checkAuth, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
+  const user = req.user ? req.user : 0;
   try {
     const post = await prisma.squeek.findUnique({
       where: {
@@ -111,6 +117,9 @@ router.get("/:id", async (req, res) => {
             },
           },
         },
+        reactions: {
+          where: {authorId: user}
+         }
       },
     });
     res.send(post);

@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
 
 const SqueekDisplay = ({ squeek }) => {
+  if (!squeek) return null;
   const token = useSelector((state) => state.userToken.token);
-  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.userToken.id);
   const squeekURL = `/squeeks/${squeek.id}`;
+  const dispatch = useDispatch();
 
   const sendReaction = async (reaction) => {
     try {
@@ -18,9 +20,16 @@ const SqueekDisplay = ({ squeek }) => {
         },
         body: JSON.stringify({ like: reaction })
       })
+      const data = await response.json()
+      return data
     } catch (err) {
-
+      console.log(err)
     }
+  }
+
+  const reactionHandler = async (reaction) => {
+    const response = await sendReaction(reaction);
+    squeek.reactions.push(reaction);
   }
 
   return (
@@ -99,7 +108,7 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           <section
-            onClick={() => sendReaction(true)}
+            onClick={() => reactionHandler(true)}
             className="flex cursor-pointer bg-earlgrey hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
@@ -115,7 +124,7 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           <section
-            onClick={() => sendReaction(false)}
+            onClick={() => reactionHandler(false)}
             className="flex cursor-pointer bg-earlgrey hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
@@ -130,6 +139,8 @@ const SqueekDisplay = ({ squeek }) => {
               />
             </svg>
           </section>
+          {squeek.reactions.find(({ authorId, like, dislike }) => authorId === userId && like === true && dislike === false) ? 'true' : 'false'}
+          {squeek.reactions.find(({ authorId, like, dislike }) => authorId === userId && like === false && dislike === true) ? 'true' : 'false'}
         </section>
       </section>
     </>
