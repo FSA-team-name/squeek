@@ -6,11 +6,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 
-router.get("/", (req, res) => {
-  res.send("Auth router working");
-});
-
-
 const randomImageUrls = [
   'https://th.bing.com/th/id/OIP.YjJSBQVO5Cy9RBxwNqfj7AHaJ5?w=124&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
   'https://th.bing.com/th/id/OIP.2KNuhbtB8r4PSVvxO-b0qQHaGB?pid=ImgDet&w=198&h=160&c=7&dpr=1.3',
@@ -25,22 +20,16 @@ const randomImageUrls = [
   
 ];
 
-
 const getRandomImageUrl = () => {
   const randomIndex = Math.floor(Math.random() * randomImageUrls.length);
   return randomImageUrls[randomIndex];
 }
 
-
 router.post("/register", async (req, res) => {
   try{
     const user = req.body;
     user.password = await bcrypt.hash(user.password, 10)
-
-
     user.photo = getRandomImageUrl();
-
-
     const result = await prisma.user.create({
       data: user
     })
@@ -78,6 +67,5 @@ router.post("/login", async (req, res) => {
 
 
 })
-
 
 module.exports = router;

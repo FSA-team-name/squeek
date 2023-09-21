@@ -42,11 +42,6 @@ const Login = () => {
       }
     };
     
-  
-
-
-
-
   return (
     <>
       <section className="bg-earlgrey flex flex-col items-center justify-center min-h-screen w-full">
