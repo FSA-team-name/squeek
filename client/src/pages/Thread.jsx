@@ -13,7 +13,11 @@ const Thread = () => {
   useEffect(() => {
     const getSqueekAndReplies = async () => {
       try {
-        const response = await fetch(`/api/squeeks/${id}`);
+        const response = await fetch(`/api/squeeks/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const data = await response.json();
         setSqueek(data);
       } catch (err) {
