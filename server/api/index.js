@@ -4,6 +4,7 @@ const search = require("./search");
 const squeeks = require("./squeeks");
 const reactions = require("./reactions");
 const users = require("./users");
+const favorites = require('./favorites')
 
 router.get("/", (req, res) => {
   res.send("API router working");
@@ -13,5 +14,6 @@ router.use("/search", search);
 router.use("/squeeks", squeeks);
 router.use("/reactions", reactions);
 router.use("/users", users);
+router.use('/favorites', favorites)
 
 module.exports = router;
