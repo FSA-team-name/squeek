@@ -53,7 +53,7 @@ router.get('/me', checkAuth, async (req, res) => {
         }, 
       }
     });
-    res.status(200).send({id: user.id, username: user.username})
+    res.status(200).send(user)
   } catch (err) {
     console.log(err);
   }
