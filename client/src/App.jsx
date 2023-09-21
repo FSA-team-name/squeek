@@ -1,18 +1,44 @@
 import { Route, Routes } from 'react-router-dom';
 import { MakeSqueeks, Navbar, Searchbar, Suggested, Favorites, Home, Profile, Thread, Message, Signup, Communities, Explore, Login, Notfound } from './imports';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import io from 'socket.io-client';
+import { useDispatch } from 'react-redux';
+import { setToken } from "./redux/tokenSlice";
+
+const socket = io.connect('http://localhost:3002');
 
 const App = () => {
-  const token = useSelector((state) => state.userToken.token);
-  
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUser = async(token) => {
+      const response = await fetch('/api/users/me', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      });
+      const data = await response.json();
+      dispatch(setToken({ id: data.id, username: data.username, token }));
+    }
+
+    if (localStorage.getItem('logintoken')) {
+      getUser(localStorage.getItem('logintoken'))
+    }
+
+  }, []);
+
+
   return (
     <section className='flex relative'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />}/>
-        <Route path='/message' element={<Message />}/>
+        <Route path='/message' element={<Message socket={socket} />}/>
         <Route path='/favorites' element={<Favorites />}/>
         <Route path='/communities' element={<Communities />}/>
         <Route path='/profile' element={<Profile />}/>

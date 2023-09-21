@@ -39,32 +39,87 @@ This is the best social media of **all time**
 8. Open fourth terminal, use this for all other necessities
 
 <h2 style="color:white">Priority 1 <b>(MVP)</b></h2>
-- Create accounts
-- Log in
-- Sign up
-- Post text
-- View other users' posts
-- View other users' profiles
-- Message other users
+<ul>
+  <li>
+    Create accounts
+  </li>
+  <li>
+    Log in
+  </li>
+  <li>
+    Sign up
+  </li>
+  <li>
+    Post text
+  </li>
+  <li>
+    View other users' posts
+  </li>
+  <li>
+    View other users' profiles
+  </li>
+  <li>
+    Message other users
+  </li>
+</ul>
 
 <h2 style="color:white">Priority 2</h2>
-- View and post images
-- Enable likes and dislikes, track, display
-- Assign avatar profile images (limited customizability)
-- Create working search bar (suggest users while typing, onsubmit show everything else)
-- Style & Make mobile responsive
-- Notifications tab for comments and likes
+<ul>
+  <li>
+    View and post images
+  </li>
+  <li>
+    Enable likes and dislikes, track, display
+  </li>
+  <li>
+    Assign avatar profile images (limited customizability)
+  </li>
+  <li>
+    Create working search bar (suggest users while typing, onsubmit show everything else)
+  </li>
+  <li>
+    Style & Make mobile responsive
+  </li>
+  <li>
+    Notifications tab for comments and likes
+  </li>
+</ul>
 
 <h2 style="color:white">Priority 3</h2>
-- Create communities
-- Allow users to join communities and browse through community feed
-- Allow users to save posts and add to different lists which can be found under favorites
-- Improve UI/UX
-- Add DOB in users
+<ul>
+  <li>
+    Create communities
+  </li>
+  <li>
+    Allow users to join communities and browse through community feed
+  </li>
+  <li>
+    Allow users to save posts and add to different lists which can be found under favorites
+  </li>
+  <li>
+    Improve UI/UX
+  </li>
+  <li>
+    Add DOB in users
+
+  </li>
+</ul>
 
 <h2 style="color:white">Priority 4</h2>
-- View and post multiple images
-- View and post videos (1)
-- Allow customized profile pictures
-- Report Posts
-- Functional Settings Page
+<ul>
+  <li>
+    View and post multiple images
+  </li>
+  <li>
+    View and post videos (1)
+  </li>
+  <li>
+    Allow customized profile pictures
+  </li>
+  <li>
+    Report Posts
+  </li>
+  <li>
+    Functional Settings Page
+  </li>
+</ul>

@@ -1,10 +1,34 @@
 const express = require("express");
 const app = express();
 const PORT = 3002;
+const http = require('http').Server(app);
+const cors = require('cors');
 const path = require("path");
 const jwt = require("jsonwebtoken");
 
+app.use(cors());
 
+const io = require('socket.io')(http, {
+  cors: {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+  }
+});
+
+const users = [];
+
+io.on('connection', (socket) => {
+  console.log(`🐭: user ${socket.id} just connected!`);
+
+  socket.on('message', (data) => {
+    console.log(data)
+    io.emit('messageResponse', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`🐭: User ${socket.id} disconnected`);
+  });
+});
 
 app.use(require("body-parser").json());
 app.use(require("morgan")("dev"));
@@ -36,6 +60,6 @@ app.use("/auth", require("./auth"));
 
 
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })

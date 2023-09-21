@@ -15,6 +15,7 @@ router.get('/me', checkAuth, async (req, res) => {
     const user = await prisma.user.findUnique({
       where: {id: req.user},
       select: {
+        id: true,
         username: true,
         firstName: true,
         lastName: true,
@@ -24,7 +25,7 @@ router.get('/me', checkAuth, async (req, res) => {
         squeeks: true
       }
     });
-    res.status(200).send(user)
+    res.status(200).send({id: user.id, username: user.username})
   } catch (err) {
     console.log(err);
   }
