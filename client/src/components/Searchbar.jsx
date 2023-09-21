@@ -4,7 +4,7 @@ const Searchbar = () => {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    console.log(searchInput);
+    const input = (searchInput);
   }, [searchInput]);
 
   const searchHandler = (e) => {

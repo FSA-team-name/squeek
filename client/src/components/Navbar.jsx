@@ -14,6 +14,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
+    localStorage.removeItem('logintoken');
     dispatch(setToken({token: null, id: null, username: null}));
   }
 
@@ -65,7 +66,7 @@ const Navbar = () => {
                 <i className='bi-person'></i>
                 <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Profile</h1>
               </Link>
-              <button type="button" onClick={logout} className={`${!open && 'scale-0'} rounded-full py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-toothwhite hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"`}>
+              <button type="button" onClick={logout} className={`${!open && 'scale-0'} rounded-full py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-toothwhite hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold text-white"`}>
                 Sign Out
               </button>
             </li>

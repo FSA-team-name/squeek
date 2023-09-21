@@ -49,7 +49,7 @@ router.get('/me', checkAuth, async (req, res) => {
         }
       }
     });
-    res.status(200).send(user)
+    res.status(200).send({id: user.id, username: user.username})
   } catch (err) {
     console.log(err);
   }
