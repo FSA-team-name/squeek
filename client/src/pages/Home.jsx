@@ -11,7 +11,11 @@ const Home = () => {
   useEffect(() => {
     const getSqueeks = async () => {
       try {
-        const response = await fetch("/api/squeeks");
+        const response = await fetch("/api/squeeks", {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
         const data = await response.json();
         setSqueeks(data);
       } catch (err) {

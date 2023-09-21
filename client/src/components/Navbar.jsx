@@ -13,6 +13,10 @@ const Navbar = () => {
   const token = useSelector((state) => state.userToken.token);
   const dispatch = useDispatch();
 
+  const logout = () => {
+    dispatch(setToken({token: null, id: null, username: null}));
+  }
+
   return (
       <nav className={`${open ? 'w-72' : 'w-20'} bg-toothwhite h-screen p-5 pt-8 sticky top-0 duration-300 border-r-4 border-cheeseyellow`}>
           <img src={control} className={`absolute -right-3 top-9 w-7 border-cheeseyellow border-2 rounded-full ${!open && 'rotate-180'}`} onClick={() => setOpen(!open)}/>
@@ -59,7 +63,7 @@ const Navbar = () => {
                 <i className='bi-person'></i>
                 <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Profile</h1>
               </Link>
-              <button type="button" onClick={() => dispatch(setToken(null))} className={`${!open && 'scale-0'} rounded-full py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-toothwhite hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"`}>
+              <button type="button" onClick={logout} className={`${!open && 'scale-0'} rounded-full py-2 px-4 relative duration-300 ml-2 bg-cheeseyellow text-toothwhite hover:bg-toothwhite hover:text-cheeseyellow border border-transparent hover:border-cheeseyellow font-bold"`}>
                 Sign Out
               </button>
             </li>

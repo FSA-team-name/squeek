@@ -1,12 +1,47 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setReplyModal, setReSqueekModal } from "../../redux/modalSlice";
 import { Link } from "react-router-dom";
 import ReSqueek from "./ReSqueek";
+import DislikeInactive from "./DislikeInactive";
+import DislikeActive from "./DislikeActive";
+import LikeInactive from "./LikeInactive";
+import LikeActive from "./LikeActive";
 
 const SqueekDisplay = ({ squeek }) => {
-
-  const dispatch = useDispatch();
+  if (!squeek) return null;
+  const token = useSelector((state) => state.userToken.token);
+  const userId = useSelector((state) => state.userToken.id);
   const squeekURL = `/squeeks/${squeek.id}`;
+  const dispatch = useDispatch();
+
+  const sendReaction = async (reaction) => {
+    try {
+      const response = await fetch(`/api/reactions/${squeek.id}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ like: reaction }),
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const activeHandler = async (reaction) => {
+    // const response = await sendReaction(reaction);
+    // squeek.reactions.push(reaction);
+    console.log(reaction)
+  };
+
+  const inactiveHandler = async (reaction) => {
+    // const response = await sendReaction(reaction);
+    // squeek.reactions.push(reaction);
+    console.log(reaction)
+  };
 
   return (
     <>
@@ -51,13 +86,13 @@ const SqueekDisplay = ({ squeek }) => {
         <section className="flex gap-x-6 flex-row">
           {/* <Link to={squeekURL}> */}
           <section
-            onClick={() => dispatch(setReplyModal({squeek: squeek}))}
+            onClick={() => dispatch(setReplyModal({ squeek: squeek }))}
             className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
+              className="fill-cheeseyellow w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -67,14 +102,14 @@ const SqueekDisplay = ({ squeek }) => {
             </svg>
           </section>
           {/* </Link> */}
-          <section 
-            onClick={() => dispatch(setReSqueekModal({squeek: squeek}))}
+          <section
+            onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
             className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow hover:fill-red-400 w-6 h-6"
+              className="fill-cheeseyellow w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -83,6 +118,52 @@ const SqueekDisplay = ({ squeek }) => {
               />
             </svg>
           </section>
+          <section
+            onClick={() => reactionHandler(true)}
+            className="flex cursor-pointer bg-earlgrey hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="fill-green-500 w-6 h-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M11.47 2.47a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06l-6.22-6.22V21a.75.75 0 01-1.5 0V4.81l-6.22 6.22a.75.75 0 11-1.06-1.06l7.5-7.5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </section>
+          <section
+            onClick={() => reactionHandler(false)}
+            className="flex cursor-pointer bg-earlgrey hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="fill-red-500 w-6 h-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 2.25a.75.75 0 01.75.75v16.19l6.22-6.22a.75.75 0 111.06 1.06l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 111.06-1.06l6.22 6.22V3a.75.75 0 01.75-.75z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </section>
+          {squeek.reactions.find(
+            ({ authorId, like, dislike }) =>
+              authorId === userId && like === true && dislike === false
+          ) ? (
+            <LikeActive />
+          ) : (
+            <LikeInactive inactiveHandler={inactiveHandler} />
+          )}
+          {squeek.reactions.find(
+            ({ authorId, like, dislike }) =>
+              authorId === userId && like === false && dislike === true
+          )
+            ? <DislikeActive />
+            : <DislikeInactive inactiveHandler={inactiveHandler} />}
         </section>
       </section>
     </>
