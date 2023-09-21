@@ -38,4 +38,64 @@ router.post("/:id", checkAuth, async (req, res) => {
   }
 });
 
+router.get("/dislikes", async (req, res) => {
+  try {
+    const reactions = await prisma.reaction.findMany({
+      where: {
+        authorId: req.user,
+        like: false,
+      },
+      include: {
+        squeek: {
+          include: {
+            author: {
+              select: {
+                photo: true,
+                firstName: true,
+                username: true,
+              }
+            },
+            reactions: { 
+              where: { authorId: req.user },
+            },
+          }
+        }
+      }
+    })
+    res.send(reactions)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.get("/likes", async (req, res) => {
+  try {
+    const reactions = await prisma.reaction.findMany({
+      where: {
+        authorId: req.user,
+        like: true,
+      },
+      include: {
+        squeek: {
+          include: {
+            author: {
+              select: {
+                photo: true,
+                firstName: true,
+                username: true,
+              }
+            },
+            reactions: { 
+              where: { authorId: req.user },
+            },
+          }
+        }
+      }
+    })
+    res.send(reactions)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = router;

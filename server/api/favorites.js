@@ -42,7 +42,6 @@ router.get("/myFavorites", checkAuth, async (req, res) => {
   }
 });
 
-
 router.post("/fav/:id", checkAuth, async (req, res) => {
  const {id} = req.params;
   try{
