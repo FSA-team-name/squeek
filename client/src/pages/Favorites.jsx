@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SqueekDisplay from "../components/reusables/SqueekDisplay";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 const Favorites = () => {
@@ -9,6 +10,7 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState();
   const [liked, setLiked] = useState([]);
   const [disliked, setDisliked] = useState([]);
+  const navigate = useNavigate();
 
   const token = useSelector((state) => state.userToken.token);
 
@@ -79,6 +81,10 @@ const Favorites = () => {
       })
     ),
   };
+
+  if(!token){
+    navigate("/");
+  }
 
   return (
     <div className="container mx-auto mt-10 p-4">
