@@ -32,16 +32,33 @@ const SqueekDisplay = ({ squeek }) => {
     }
   };
 
+  const createFavorite = async () => {
+    try {
+      const response = await fetch(`/api/favorites/fav/${squeek.id}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      console.log(data)
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const activeHandler = async (reaction) => {
     // const response = await sendReaction(reaction);
     // squeek.reactions.push(reaction);
-    console.log(reaction)
+    console.log(reaction);
   };
 
   const inactiveHandler = async (reaction) => {
     const response = await sendReaction(reaction);
     // squeek.reactions.push(reaction);
-    console.log('from inactive handler',response);
+    console.log("from inactive handler", response);
   };
 
   return (
@@ -85,6 +102,24 @@ const SqueekDisplay = ({ squeek }) => {
           <p>{squeek.dateTimeCreated}</p>
         </section>
         <section className="flex gap-x-6 flex-row">
+          {squeek.reactions ? (
+            squeek.reactions.find(
+              ({ authorId, like, dislike }) =>
+                authorId === userId && like === true && dislike === false
+            ) ? (
+              <LikeActive activeHandler={activeHandler} />
+            ) : (
+              <LikeInactive inactiveHandler={inactiveHandler} />
+            )
+          ) : null}
+          {squeek.reactions.find(
+            ({ authorId, like, dislike }) =>
+              authorId === userId && like === false && dislike === true
+          ) ? (
+            <DislikeActive />
+          ) : (
+            <DislikeInactive inactiveHandler={inactiveHandler} />
+          )}
           {/* <Link to={squeekURL}> */}
           <section
             onClick={() => dispatch(setReplyModal({ squeek: squeek }))}
@@ -118,21 +153,23 @@ const SqueekDisplay = ({ squeek }) => {
                 clipRule="evenodd"
               />
             </svg>
-          </section>      
-          {squeek.reactions ? squeek.reactions.find(
-            ({ authorId, like, dislike }) =>
-              authorId === userId && like === true && dislike === false
-          ) ? (
-            <LikeActive activeHandler={activeHandler}/>
-          ) : (
-            <LikeInactive inactiveHandler={inactiveHandler} />
-          ) : null}
-          {squeek.reactions.find(
-            ({ authorId, like, dislike }) =>
-              authorId === userId && like === false && dislike === true
-          )
-            ? <DislikeActive />
-            : <DislikeInactive inactiveHandler={inactiveHandler} />}
+          </section>
+          <section
+            onClick={() => createFavorite()}
+            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="fill-cheeseyellow w-6 h-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </section>
         </section>
       </section>
     </>
