@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   replyModal: false,
   reSqueekModal: false,
+  loginModal: false,
   squeek: null,
 };
 
@@ -18,6 +19,7 @@ export const modalSlice = createSlice({
     resetModal: (state) => {
       state.replyModal = false;
       state.reSqueekModal = false;
+      state.loginModal = false;
       state.squeek = null;
     },
     setReSqueekModal: (state, action) => {
@@ -25,13 +27,17 @@ export const modalSlice = createSlice({
       state.reSqueekModal = true;
       state.squeek = squeek;
     },
+    setLoginModal: (state) => {
+      state.loginModal = true;
+    },
   },
 });
 
 export const { 
   setReplyModal,
   setReSqueekModal,
-  resetModal
+  resetModal,
+  setLoginModal
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

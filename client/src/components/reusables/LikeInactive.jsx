@@ -1,7 +1,13 @@
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginModal } from "../../redux/modalSlice";
+
 const LikeInactive = ({ inactiveHandler }) => {
-  return (
+  const token = useSelector((state) => state.userToken.token);
+  const dispatch = useDispatch();
+
+  return(
     <section
-            onClick={() => inactiveHandler(true)}
+            onClick={() => token ? inactiveHandler(false) : dispatch(setLoginModal())}
             className="flex cursor-pointer bg-earlgrey hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg

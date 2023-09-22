@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`🐭: User ${socket.id} disconnected`);
-    users = users.filter((user) => user.socketID !== socket.id);
+    // users = users.filter((user) => user.socketID !== socket.id);
     io.emit('newUserResponse', users);
     socket.disconnect();
   });

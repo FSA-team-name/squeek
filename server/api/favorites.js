@@ -50,7 +50,7 @@ router.post("/fav/:id", checkAuth, async (req, res) => {
         squeekId: Number(id),
       }
     })
-    res.send(fav)
+    res.status(201).send(fav)
   } catch(err){
     console.log(err)
     res.status(500).send({ err: "An error occurred while adding a favorite." });
