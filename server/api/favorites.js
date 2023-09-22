@@ -8,7 +8,6 @@ router.get("/", (req, res) => {
   res.send("Fav router working");
 });
 
-
 router.get("/myFavorites", checkAuth, async (req, res) => {
   const user = req.user ? req.user : 0;
   try {
@@ -57,6 +56,5 @@ router.post("/fav/:id", checkAuth, async (req, res) => {
     res.status(500).send({ err: "An error occurred while adding a favorite." });
   }
 })
-
 
 module.exports = router;

@@ -18,9 +18,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-
   const dispatch = useDispatch();
-
 
   const registerUser = async (e) => {
     try {
@@ -30,7 +28,6 @@ const Signup = () => {
         setPasswordMatch(false);
         return;
       }
-  
       const response = await fetch('/auth/register', {
         method: 'POST',
         headers: {
@@ -54,7 +51,6 @@ const Signup = () => {
     } catch (error) {
       console.error('An error occurred:', error);
     }
-    
   };
 
   return (
