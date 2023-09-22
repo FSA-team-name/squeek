@@ -38,7 +38,6 @@ const EditProfile = () => {
         console.error("Error fetching user data");
       }
     };
-
     fetchUser();
   }, []);
 
@@ -59,8 +58,6 @@ const EditProfile = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  console.log('form data', formData)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -62,11 +62,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "client/dist/index.html"));
 });
 
-
 app.use("/api", require("./api"));
 app.use("/auth", require("./auth"));
-
-
 
 http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
