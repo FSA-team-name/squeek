@@ -7,6 +7,7 @@ const ChatBody = ({ messages }) => {
   const username = useSelector((state) => state.userToken.username);
   const navigate = useNavigate();
 
+  console.log(messages)
   // const handleLeaveChat = () => {
   //   localStorage.removeItem('userName');
   //   navigate('/');
@@ -25,23 +26,24 @@ const ChatBody = ({ messages }) => {
       </header>
 
       <div className="message__container">
-        {messages.map((message) => {
+        {messages.map((message) => 
           message.name === username ? (
-            <div className="message__chats">
+            <div className="message__chats" key={message.id}>
+              {console.log(true)}
               <p className="sender__name">You</p>
               <div className="message__sender">
                 <p>{message.text}</p>
               </div>
             </div>
           ) : (
-            <div className="message__chats">
+            <div className="message__chats" key={message.id}>
               <p>{message.name}</p>
               <div className="message__recipient">
                 <p>{message.text}</p>
               </div>
             </div>
           )
-        })}
+        )}
 
         <div className="message__status">
           <p>Someone is typing...</p>

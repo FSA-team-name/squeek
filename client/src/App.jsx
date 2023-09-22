@@ -29,6 +29,8 @@ const socket = io.connect("http://localhost:3002");
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
+  const userID = useSelector((state) => state.userToken.id);
+  const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
   const showReSqueekModal = useSelector(
     (state) => state.modalState.reSqueekModal
@@ -56,6 +58,7 @@ const App = () => {
 
     if (localStorage.getItem("logintoken")) {
       getUser(localStorage.getItem("logintoken"));
+      socket.emit('newUser', { username, socketID: socket.id })
     }
   }, []);
 
