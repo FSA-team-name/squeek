@@ -25,8 +25,7 @@ import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
 import { resetModal, setLoginModal } from "./redux/modalSlice";
-
-const socket = io.connect("http://localhost:3002");
+import socket from './socket';
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
@@ -34,9 +33,7 @@ const App = () => {
   const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
   const showLoginModal = useSelector((state) => state.modalState.loginModal);
-  const showReSqueekModal = useSelector(
-    (state) => state.modalState.reSqueekModal
-  );
+  const showReSqueekModal = useSelector((state) => state.modalState.reSqueekModal);
   const squeek = useSelector((state) => state.modalState.squeek);
 
   const dispatch = useDispatch();
@@ -53,14 +50,16 @@ const App = () => {
         });
         const data = await response.json();
         dispatch(setToken({ id: data.id, username: data.username, token }));
+        socket.emit('newUser', { username: data.username, socketID: socket.id });
       } catch (err) {
         console.error(err);
       }
     };
 
-    if (localStorage.getItem("logintoken")) {
+    if (token) {
+      getUser(token);
+    } else if (localStorage.getItem("logintoken")) {
       getUser(localStorage.getItem("logintoken"));
-      socket.emit('newUser', { username, socketID: socket.id })
     }
   }, []);
 

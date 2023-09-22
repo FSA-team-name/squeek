@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/me', checkAuth, async (req, res) => {
+  const user = req.user ? req.user : 0;
   try {
     const user = await prisma.user.findUnique({
       where: {id: req.user},
@@ -32,7 +33,10 @@ router.get('/me', checkAuth, async (req, res) => {
                 photo: true,
                 verified: true
               }
-            }
+            },
+            reactions: { 
+              where: { authorId: req.user },
+            },
           }
         },
         replies: {
@@ -46,7 +50,7 @@ router.get('/me', checkAuth, async (req, res) => {
               }
             }
           }
-        }
+        }, 
       }
     });
     res.status(200).send({id: user.id, username: user.username})

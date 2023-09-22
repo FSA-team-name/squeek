@@ -15,7 +15,7 @@ const io = require('socket.io')(http, {
   }
 });
 
-const users = [];
+let users = [];
 
 io.on('connection', (socket) => {
   console.log(`🐭: user ${socket.id} just connected!`);

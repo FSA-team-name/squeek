@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ChatBar from '../components/ChatBar';
 import ChatBody from '../components/ChatBody';
@@ -10,16 +10,22 @@ const Message = ({ socket }) => {
   const username = useSelector((state) => state.userToken.username);
 
   const [messages, setMessages] = useState([]);
+  const [typingStatus, setTypingStatus] = useState('');
+  const lastMessageRef = useRef(null);
 
   useEffect(() => {
     socket.on('messageResponse', (data) => setMessages([...messages, data]));
   }, [socket, messages]);
 
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   return (
     <div className="chat">
       <ChatBar socket={socket} />
       <div className="chat__main">
-        <ChatBody messages={messages} />
+        <ChatBody messages={messages} lastMessageRef={lastMessageRef} />
         <ChatFooter socket={socket} />
       </div>
     </div>
