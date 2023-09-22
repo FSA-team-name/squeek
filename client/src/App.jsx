@@ -24,17 +24,14 @@ import EditProfile from "./components/EditProfile";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
-
-const socket = io.connect("http://localhost:3002");
+import socket from './socket';
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
   const userID = useSelector((state) => state.userToken.id);
   const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
-  const showReSqueekModal = useSelector(
-    (state) => state.modalState.reSqueekModal
-  );
+  const showReSqueekModal = useSelector((state) => state.modalState.reSqueekModal);
   const squeek = useSelector((state) => state.modalState.squeek);
 
   const dispatch = useDispatch();
@@ -51,14 +48,16 @@ const App = () => {
         });
         const data = await response.json();
         dispatch(setToken({ id: data.id, username: data.username, token }));
+        socket.emit('newUser', { username: data.username, socketID: socket.id });
       } catch (err) {
         console.error(err);
       }
     };
 
-    if (localStorage.getItem("logintoken")) {
+    if (token) {
+      getUser(token);
+    } else if (localStorage.getItem("logintoken")) {
       getUser(localStorage.getItem("logintoken"));
-      socket.emit('newUser', { username, socketID: socket.id })
     }
   }, []);
 
@@ -80,7 +79,7 @@ const App = () => {
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/404-notfound" element={<Notfound />} />
-        <Route path="/thread" element={<Thread />} />
+        <Route path="/squeeks/:id" element={<Thread />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
