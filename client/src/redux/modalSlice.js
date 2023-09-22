@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   replyModal: false,
   reSqueekModal: false,
-  loginModal: true,
+  loginModal: false,
   squeek: null,
 };
 
