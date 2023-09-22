@@ -6,6 +6,7 @@ import DislikeInactive from "./DislikeInactive";
 import DislikeActive from "./DislikeActive";
 import LikeInactive from "./LikeInactive";
 import LikeActive from "./LikeActive";
+import { useState } from "react";
 
 const SqueekDisplay = ({ squeek }) => {
   if (!squeek) return null;
@@ -38,9 +39,9 @@ const SqueekDisplay = ({ squeek }) => {
   };
 
   const inactiveHandler = async (reaction) => {
-    // const response = await sendReaction(reaction);
+    const response = await sendReaction(reaction);
     // squeek.reactions.push(reaction);
-    console.log(reaction)
+    console.log('from inactive handler',response);
   };
 
   return (
@@ -117,47 +118,15 @@ const SqueekDisplay = ({ squeek }) => {
                 clipRule="evenodd"
               />
             </svg>
-          </section>
-          <section
-            onClick={() => reactionHandler(true)}
-            className="flex cursor-pointer bg-earlgrey hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="fill-green-500 w-6 h-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.47 2.47a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06l-6.22-6.22V21a.75.75 0 01-1.5 0V4.81l-6.22 6.22a.75.75 0 11-1.06-1.06l7.5-7.5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </section>
-          <section
-            onClick={() => reactionHandler(false)}
-            className="flex cursor-pointer bg-earlgrey hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="fill-red-500 w-6 h-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12 2.25a.75.75 0 01.75.75v16.19l6.22-6.22a.75.75 0 111.06 1.06l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 111.06-1.06l6.22 6.22V3a.75.75 0 01.75-.75z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </section>
-          {squeek.reactions.find(
+          </section>      
+          {squeek.reactions ? squeek.reactions.find(
             ({ authorId, like, dislike }) =>
               authorId === userId && like === true && dislike === false
           ) ? (
-            <LikeActive />
+            <LikeActive activeHandler={activeHandler}/>
           ) : (
             <LikeInactive inactiveHandler={inactiveHandler} />
-          )}
+          ) : null}
           {squeek.reactions.find(
             ({ authorId, like, dislike }) =>
               authorId === userId && like === false && dislike === true

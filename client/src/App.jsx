@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import {
   MakeSqueeks,
   Navbar,
@@ -24,6 +24,7 @@ import EditProfile from "./components/EditProfile";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
+import { resetModal, setLoginModal } from "./redux/modalSlice";
 
 const socket = io.connect("http://localhost:3002");
 
@@ -32,6 +33,7 @@ const App = () => {
   const userID = useSelector((state) => state.userToken.id);
   const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
+  const showLoginModal = useSelector((state) => state.modalState.loginModal);
   const showReSqueekModal = useSelector(
     (state) => state.modalState.reSqueekModal
   );
@@ -64,11 +66,18 @@ const App = () => {
 
   return (
     <section className="flex relative">
+      {/* <button onClick={() => dispatch(setLoginModal())}>tester</button> */}
       <Modal isVisible={showReplyModal}>
         <ReplyModalDisplay squeek={squeek} />
       </Modal>
       <Modal isVisible={showReSqueekModal}>
         <ReSqueekModalDisplay squeek={squeek} />
+      </Modal>
+      <Modal isVisible={showLoginModal}>
+        <p>You need to be logged in to do that!</p>
+        <Link to='login'>Login</Link>
+        <p>or</p>
+        <Link to='signup' onClick={() => dispatch(resetModal())}>Sign Up!</Link>
       </Modal>
       <Navbar />
       <Routes>
@@ -80,7 +89,7 @@ const App = () => {
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/404-notfound" element={<Notfound />} />
-        <Route path="/thread" element={<Thread />} />
+        <Route path="/squeeks/:id" element={<Thread />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>

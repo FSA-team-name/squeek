@@ -1,7 +1,7 @@
-const DislikeActive = ({ reactionHandler }) => {
+const DislikeActive = ({ activeHandler }) => {
   return(
     <section
-            onClick={() => reactionHandler(false)}
+            onClick={() => activeHandler(false)}
             className="flex cursor-pointer bg-red-400 hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg

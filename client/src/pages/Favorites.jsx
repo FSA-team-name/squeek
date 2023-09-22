@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 const Favorites = () => {
   const [activeTab, setActiveTab] = useState("Liked"); 
   const [title, setTitle] = useState("Liked"); 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState();
   const token = useSelector((state) => state.userToken.token);
+
 
   useEffect(() => {
     const fetchFavs = async () => {
@@ -45,9 +46,9 @@ const Favorites = () => {
       </div>
     ),
     Favorites: (
-      favorites.map((favs, i) => {
+     favorites ? favorites.map((favs, i) => {
         return (<SqueekDisplay key={i} squeek={favs.squeek}/>) 
-      })
+      }) : null
     ),
     Dislikes: (
       <div>

@@ -1,7 +1,7 @@
-const LikeInactive = ({ reactionHandler }) => {
+const LikeInactive = ({ activeHandler }) => {
   return (
     <section
-      onClick={() => reactionHandler(true)}
+      onClick={() => activeHandler(true)}
       className="flex cursor-pointer bg-green-400 hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
     >
       <svg
