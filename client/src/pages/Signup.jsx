@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setToken } from '../redux/tokenSlice';
+import logo from '../assets/mouse-logo.png';
 
 
 
@@ -62,7 +63,7 @@ const Signup = () => {
   <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 w-full">
     <div className="py-12" style={{ width: '53%' }}>
       <a href="#" className="flex items-center mb-2 text-2xl font-semibold text-gray-900 dark:text-white">
-          <img className="w-6 h-6 mr-1" src="src/assets/mouse-logo.png" alt="logo"></img>
+          <img className="w-6 h-6 mr-1" src={logo} alt="logo"></img>
           Squeek   
       </a>
       <div className="w-full bg-mickeygrey rounded-lg shadow border-2 border-cheeseyellow md:mt-0 max-w-3xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">

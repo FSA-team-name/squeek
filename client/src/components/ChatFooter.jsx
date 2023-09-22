@@ -9,6 +9,10 @@ const ChatFooter = ({ socket }) => {
 
   const [message, setMessage] = useState('');
 
+  const handleTyping = () => {
+    socket.emit('typing', `${username} is typing...`);
+  }
+
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (message.trim() && token) {
@@ -31,6 +35,7 @@ const ChatFooter = ({ socket }) => {
           className="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleTyping}
         />
         <button className="sendBtn">SEND</button>
       </form>
