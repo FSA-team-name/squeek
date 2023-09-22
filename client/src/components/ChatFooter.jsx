@@ -18,7 +18,6 @@ const ChatFooter = ({ socket }) => {
         id: userID,
         socketID: socket.id,
       });
-      console.log(message)
     }
     setMessage('');
   };
