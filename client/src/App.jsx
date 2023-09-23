@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import {
   MakeSqueeks,
   Navbar,
@@ -21,17 +21,22 @@ import Modal from "./components/modals/Modal";
 import ReplyModalDisplay from "./components/modals/ReplyModalDisplay";
 import ReSqueekModalDisplay from "./components/modals/ReSqueekModalDisplay";
 import EditProfile from "./components/EditProfile";
+import LoginModal from "./components/modals/LoginModal";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
-import socket from './socket';
+import { resetModal } from "./redux/modalSlice";
+import socket from "./socket";
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
   const userID = useSelector((state) => state.userToken.id);
   const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
-  const showReSqueekModal = useSelector((state) => state.modalState.reSqueekModal);
+  const showLoginModal = useSelector((state) => state.modalState.loginModal);
+  const showReSqueekModal = useSelector(
+    (state) => state.modalState.reSqueekModal
+  );
   const squeek = useSelector((state) => state.modalState.squeek);
 
   const dispatch = useDispatch();
@@ -48,7 +53,10 @@ const App = () => {
         });
         const data = await response.json();
         dispatch(setToken({ id: data.id, username: data.username, token }));
-        socket.emit('newUser', { username: data.username, socketID: socket.id });
+        socket.emit("newUser", {
+          username: data.username,
+          socketID: socket.id,
+        });
       } catch (err) {
         console.error(err);
       }
@@ -64,10 +72,13 @@ const App = () => {
   return (
     <section className="flex relative">
       <Modal isVisible={showReplyModal}>
-        <ReplyModalDisplay squeek={squeek} />
+        {token ? <ReplyModalDisplay squeek={squeek} /> : <LoginModal />}
       </Modal>
       <Modal isVisible={showReSqueekModal}>
-        <ReSqueekModalDisplay squeek={squeek} />
+        {token ? <ReSqueekModalDisplay squeek={squeek} /> : <LoginModal />}
+      </Modal>
+      <Modal isVisible={showLoginModal}>
+        <LoginModal />
       </Modal>
       <Navbar />
       <Routes>

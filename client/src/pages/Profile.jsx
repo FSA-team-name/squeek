@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ReplyDisplay from "../components/reusables/ReplyDisplay";
 
 const Profile = ({squeek}) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [displaySqueeks, setDisplaySqueeks] = useState(true); 
   const [displayNibbles, setDisplayNibbles] = useState(false);
@@ -33,7 +33,6 @@ const Profile = ({squeek}) => {
     };
     userProfile();
   }, [token]);
-
 
   const updateUserProfile = (updatedUserData) => {
     setUser(updatedUserData);

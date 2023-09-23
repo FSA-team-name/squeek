@@ -8,7 +8,6 @@ router.get("/", (req, res) => {
   res.send("Fav router working");
 });
 
-
 router.get("/myFavorites", checkAuth, async (req, res) => {
   const user = req.user ? req.user : 0;
   try {
@@ -42,7 +41,6 @@ router.get("/myFavorites", checkAuth, async (req, res) => {
   }
 });
 
-
 router.post("/fav/:id", checkAuth, async (req, res) => {
  const {id} = req.params;
   try{
@@ -52,12 +50,11 @@ router.post("/fav/:id", checkAuth, async (req, res) => {
         squeekId: Number(id),
       }
     })
-    res.send(fav)
+    res.status(201).send(fav)
   } catch(err){
     console.log(err)
     res.status(500).send({ err: "An error occurred while adding a favorite." });
   }
 })
-
 
 module.exports = router;

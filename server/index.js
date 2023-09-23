@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`🐭: User ${socket.id} disconnected`);
-    users = users.filter((user) => user.socketID !== socket.id);
+    // users = users.filter((user) => user.socketID !== socket.id);
     io.emit('newUserResponse', users);
     socket.disconnect();
   });
@@ -64,11 +64,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "client/dist/index.html"));
 });
 
-
 app.use("/api", require("./api"));
 app.use("/auth", require("./auth"));
-
-
 
 http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
