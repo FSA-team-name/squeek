@@ -1,13 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
-body {
-background-color: #cfcfcf;
-}
-
-nav {
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-}
-
 .logo {
   transition: all 0.5s ease;
   margin: 10px 0 0 10px;
@@ -23,6 +15,7 @@ nav {
 nav {
   width: 280px;
   transition: all 0.5s ease;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
 .home__container {
@@ -176,3 +169,26 @@ nav {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-content: 0deg 0% 32.9%;
+    --color-accent1: 43deg 97.8% 64.3%;
+    --color-accent2: 0deg 0% 32.9%;
+    --color-comp: 0deg 0% 98%;
+    --color-bkg: 0deg 0% 75.7%;
+    --color-buttoninactive: 0deg 0% 40%;
+    --color-buttonactive: 0deg 0% 70%;
+  }
+  @media (prefers-color-scheme:dark) {
+    :root {
+    --color-content: 0deg 0% 98%;
+    --color-accent1: 43deg 97.8% 64.3%;
+    --color-accent2: 0deg 0% 64.3%;
+    --color-comp: 0deg 0% 32.9%;
+    --color-bkg: 0deg 0% 30%;
+    --color-buttoninactive: 0deg 0% 60%;
+    --color-buttonactive: 0deg 0% 30%;
+    }
+  }
+}

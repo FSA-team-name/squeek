@@ -7,7 +7,7 @@ const FavoritesButton = ({ createFavorite }) => {
   return (
     <section
             onClick={() => token ? createFavorite() : dispatch(setLoginModal())}
-            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-button-inactive hover:bg-button-active items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

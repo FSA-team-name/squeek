@@ -23,9 +23,9 @@ const Modal = ({ isVisible, children }) => {
       >
         <button 
           onClick={() => dispatch(resetModal())}
-          className="text-earlgrey text-xl place-self-end"
+          className="text-content text-xl place-self-end"
         >X</button>
-        <section className="bg-cheeseyellow p-2 rounded-sm">{children}</section>
+        <section className="bg-accent-1 p-2 rounded-sm">{children}</section>
       </section>
     </section>
   );
