@@ -64,20 +64,20 @@ const SqueekDisplay = ({ squeek }) => {
 
   return (
     <>
-      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-cheeseyellow bg-toothwhite shadow-md rounded-s ">
+      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 bg-comp shadow-md rounded-s ">
         {/* name and pic and hr */}
         <section className="flex justify-between items-center">
           <section className="flex justify-start py-1 items-center">
-            <section className="flex box-border h-12 w-12 border-2 border-cheeseyellow items-center overflow-hidden rounded-full">
+            <section className="flex box-border h-12 w-12 border-2 border-accent-1 items-center overflow-hidden rounded-full">
               <img className="h-full" src={squeek.author.photo} />
             </section>
-            <section className="flex ml-2 bg-cheeseyellow rounded-s-sm">
-              <h2 className="px-1 font-bold text-earlgrey text-lg">
+            <section className="flex ml-2 bg-accent-1 rounded-s-sm">
+              <h2 className="px-1 font-bold text-content text-lg">
                 {squeek.author.firstName}
               </h2>
             </section>
-            <section className="flex px-1 bg-earlgrey rounded-e-sm">
-              <h3 className="text-cheeseyellow text-sm p-1">
+            <section className="flex px-1 bg-accent-2 rounded-e-sm">
+              <h3 className="text-accent-1 text-sm p-1">
                 @{squeek.author.username}
               </h3>
             </section>
@@ -88,7 +88,7 @@ const SqueekDisplay = ({ squeek }) => {
         </section>
         <Link to={squeekURL}>
           <section className="py-2">
-            <p className="whitespace-pre-line font-medium text-earlgrey">
+            <p className="whitespace-pre-line font-medium text-content">
               {squeek.text}
             </p>
           </section>
@@ -98,8 +98,8 @@ const SqueekDisplay = ({ squeek }) => {
             <ReSqueek squeekID={squeek.reSqueekId} />
           </section>
         ) : null}
-        <section className="border-t-2 border-t-cheeseyellow"></section>
-        <section className="text-xs text-earlgrey py-1">
+        <section className="border-t-2 border-t-accent-1"></section>
+        <section className="text-xs text-content py-1">
           <p>{squeek.dateTimeCreated}</p>
         </section>
         <section className="flex gap-x-6 flex-row">
@@ -124,7 +124,7 @@ const SqueekDisplay = ({ squeek }) => {
           {/* <Link to={squeekURL}> */}
           <section
             onClick={() => dispatch(setReplyModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -141,12 +141,12 @@ const SqueekDisplay = ({ squeek }) => {
           {/* </Link> */}
           <section
             onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-earlgrey hover:bg-mickeygrey items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-cheeseyellow w-6 h-6"
+              className="fill-accent-1 w-6 h-6"
             >
               <path
                 fillRule="evenodd"

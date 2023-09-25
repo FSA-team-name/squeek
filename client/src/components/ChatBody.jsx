@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const ChatBody = ({ messages, lastMessageRef }) => {
+const ChatBody = ({ messages, typingStatus, lastMessageRef }) => {
   const token = useSelector((state) => state.userToken.token);
   const userID = useSelector((state) => state.userToken.id);
   const username = useSelector((state) => state.userToken.username);
@@ -10,11 +10,8 @@ const ChatBody = ({ messages, lastMessageRef }) => {
   return (
     <>
       <header className="chat__mainHeader">
-        <p>Hangout with Colleagues</p>
-        <button className="leaveChat__btn" 
-        >
-          LEAVE CHAT
-        </button>
+        <p>Firstname Lastname</p>
+        <p>@username</p>
       </header>
 
       <div className="message__container">
@@ -37,7 +34,7 @@ const ChatBody = ({ messages, lastMessageRef }) => {
         )}
 
         <div className="message__status">
-          <p>Someone is typing...</p>
+          <p>{typingStatus}</p>
         </div>
         <div ref={lastMessageRef} />
       </div>
