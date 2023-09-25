@@ -41,7 +41,7 @@ const InputBox = ({
         <section className="absolute bottom-0 right-11">
           <p className="text-xs text-content">{characterCount}/140</p>
         </section>
-        <button className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-accent-1 text-content hover:bg-accent-2 hover:text-accent-1 border border-transparent hover:border-accent-1 font-bold">
+        <button className="my-.5 mx-4 rounded-md py-2 px-4 relative duration-300 ml-2 bg-accent-1 text-bkg hover:bg-accent-2 hover:text-accent-1 border border-transparent hover:border-accent-1 font-bold">
           {action}
         </button>
       </form>
