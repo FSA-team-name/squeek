@@ -28,7 +28,7 @@ const App = () => {
   const squeek = useSelector((state) => state.modalState.squeek);
 
   return (
-    <section className="flex relative">
+    <section className="flex relative bg-bkg">
       <Modal isVisible={showReplyModal}>
         <ReplyModalDisplay squeek={squeek} />
       </Modal>
@@ -48,7 +48,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <section className="w-72 block bg-toothwhite h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-cheeseyellow">
+      <section className="w-72 block bg-comp h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-accent1">
       </section>
     </section>
   );
