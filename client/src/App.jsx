@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   MakeSqueeks,
   Navbar,
@@ -15,88 +15,39 @@ import {
   Login,
   Notfound,
 } from "./imports";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Modal from "./components/modals/Modal";
 import ReplyModalDisplay from "./components/modals/ReplyModalDisplay";
 import ReSqueekModalDisplay from "./components/modals/ReSqueekModalDisplay";
-import EditProfile from "./components/EditProfile";
-import LoginModal from "./components/modals/LoginModal";
-import io from "socket.io-client";
-import { useDispatch } from "react-redux";
-import { setToken } from "./redux/tokenSlice";
-import { resetModal } from "./redux/modalSlice";
-import socket from "./socket";
 
 const App = () => {
-  const token = useSelector((state) => state.userToken.token);
-  const userID = useSelector((state) => state.userToken.id);
-  const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
-  const showLoginModal = useSelector((state) => state.modalState.loginModal);
   const showReSqueekModal = useSelector(
     (state) => state.modalState.reSqueekModal
   );
   const squeek = useSelector((state) => state.modalState.squeek);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const getUser = async (token) => {
-      try {
-        const response = await fetch("/api/users/me", {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        dispatch(setToken({ id: data.id, username: data.username, token }));
-        socket.emit("newUser", {
-          username: data.username,
-          socketID: socket.id,
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    if (token) {
-      getUser(token);
-    } else if (localStorage.getItem("logintoken")) {
-      getUser(localStorage.getItem("logintoken"));
-    }
-  }, []);
-
   return (
     <section className="flex relative">
       <Modal isVisible={showReplyModal}>
-        {token ? <ReplyModalDisplay squeek={squeek} /> : <LoginModal />}
+        <ReplyModalDisplay squeek={squeek} />
       </Modal>
       <Modal isVisible={showReSqueekModal}>
-        {token ? <ReSqueekModalDisplay squeek={squeek} /> : <LoginModal />}
-      </Modal>
-      <Modal isVisible={showLoginModal}>
-        <LoginModal />
+        <ReSqueekModalDisplay squeek={squeek} />
       </Modal>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/message" element={<Message socket={socket} />} />
+        <Route path="/message" element={<Message />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/communities" element={<Communities />} />
-        <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/404-notfound" element={<Notfound />} />
         <Route path="/squeeks/:id" element={<Thread />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <section className="w-72 block bg-toothwhite h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-cheeseyellow">
-        <Searchbar />
-      </section>
     </section>
   );
 };

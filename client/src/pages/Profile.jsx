@@ -12,6 +12,7 @@ const Profile = ({squeek}) => {
   const [displayNibbles, setDisplayNibbles] = useState(false);
   const token = useSelector((state) => state.userToken.token);
   const navigate = useNavigate();
+  
   useEffect(() => {
     const userProfile = async () => {
       try {
@@ -23,6 +24,7 @@ const Profile = ({squeek}) => {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log(data)
           setUser(data);
         } else {
           console.error("Error fetching user data");
