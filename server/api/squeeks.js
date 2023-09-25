@@ -21,7 +21,10 @@ router.get("/", async (req, res) => {
         },
         reactions: {
          where: {authorId: user}
-        }
+        },
+        favorites: {
+          where: {authorId: user}
+         }
       },
       orderBy: {
         id: "desc",
