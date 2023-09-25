@@ -179,16 +179,18 @@ nav {
     --color-bkg: 0deg 0% 75.7%;
     --color-buttoninactive: 0deg 0% 40%;
     --color-buttonactive: 0deg 0% 70%;
+    --color-innercomp: 0deg 0% 85%;
   }
   @media (prefers-color-scheme:dark) {
     :root {
     --color-content: 0deg 0% 98%;
     --color-accent1: 43deg 97.8% 64.3%;
     --color-accent2: 0deg 0% 64.3%;
-    --color-comp: 0deg 0% 32.9%;
+    --color-comp: 0deg 0% 25%;
     --color-bkg: 0deg 0% 30%;
     --color-buttoninactive: 0deg 0% 60%;
     --color-buttonactive: 0deg 0% 30%;
+    --color-innercomp: 0deg 0% 33.9%;
     }
   }
 }

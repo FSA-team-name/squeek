@@ -23,6 +23,7 @@ export default {
         bkg: 'hsl(var(--color-bkg) / <alpha-value>)',
         content: 'hsl(var(--color-content) / <alpha-value>)',
         comp: 'hsl(var(--color-comp) / <alpha-value>)',
+        innercomp: 'hsl(var(--color-innercomp) / <alpha-value>)',
       },
       scale: {
         '-100': '-1',
