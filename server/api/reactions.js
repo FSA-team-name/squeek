@@ -60,7 +60,7 @@ router.get("/dislikes", async (req, res) => {
             },
           }
         }
-      }
+      },
     })
     res.send(reactions)
   } catch (err) {
@@ -88,9 +88,9 @@ router.get("/likes", async (req, res) => {
             reactions: { 
               where: { authorId: req.user },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     })
     res.send(reactions)
   } catch (err) {

@@ -6,7 +6,8 @@ import DislikeInactive from "./DislikeInactive";
 import DislikeActive from "./DislikeActive";
 import LikeInactive from "./LikeInactive";
 import LikeActive from "./LikeActive";
-import FavoritesButton from "./FavoritesButton";
+import FavoritesInactive from "./FavoritesInactive";
+import FavoritesActive from "./FavoritesActive";
 import { useState } from "react";
 
 const SqueekDisplay = ({ squeek }) => {
@@ -124,12 +125,12 @@ const SqueekDisplay = ({ squeek }) => {
           {/* <Link to={squeekURL}> */}
           <section
             onClick={() => dispatch(setReplyModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-comp hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-amber-200 w-6 h-6"
+              className="fill-toothwhite stroke-accent-1 w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -141,7 +142,7 @@ const SqueekDisplay = ({ squeek }) => {
           {/* </Link> */}
           <section
             onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-comp hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +156,16 @@ const SqueekDisplay = ({ squeek }) => {
               />
             </svg>
           </section>
-          <FavoritesButton createFavorite={createFavorite}/>
+          {squeek.favorites ? (
+            squeek.favorites.find(
+              ({ authorId, squeekId  }) =>
+                authorId === userId && squeekId === squeek.id
+            ) ? (
+              <FavoritesActive />
+            ) : (
+              <FavoritesInactive createFavorite={createFavorite}/>
+            )
+          ) : null}
         </section>
       </section>
     </>

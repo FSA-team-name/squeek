@@ -2,7 +2,7 @@ const LikeInactive = ({ activeHandler }) => {
   return (
     <section
       onClick={() => activeHandler(true)}
-      className="flex cursor-pointer bg-green-400 hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
+      className="flex cursor-pointer bg-green-700 hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
