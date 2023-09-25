@@ -30,7 +30,7 @@ const InputBox = ({
     <section className="flex flex-col my-2 mx-2 bg-comp shadow-md">
       <form onSubmit={formHandler} className="flex relative items-center">
         <textarea
-          className="w-full h-20 p-2 inline outline-none resize-none mx-2 bg-comp rounded-s "
+          className="w-full h-20 p-2 inline outline-none resize-none mx-2 bg-comp rounded-s text-content"
           value={squeekInput}
           rows={5}
           onChange={changeHandler}

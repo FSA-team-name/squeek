@@ -2,12 +2,12 @@ const DislikeActive = ({ activeHandler }) => {
   return(
     <section
             onClick={() => activeHandler(false)}
-            className="flex cursor-pointer bg-red-700 hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-rose-500 hover:bg-red-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-red-500 w-6 h-6"
+              className="fill-red-700 w-6 h-6"
             >
               <path
                 fillRule="evenodd"

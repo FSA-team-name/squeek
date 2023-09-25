@@ -73,7 +73,7 @@ const SqueekDisplay = ({ squeek }) => {
               <img className="h-full" src={squeek.author.photo} />
             </section>
             <section className="flex ml-2 bg-accent-1 rounded-s-sm">
-              <h2 className="px-1 font-bold text-content text-lg">
+              <h2 className="px-1 font-bold text-bkg text-lg">
                 {squeek.author.firstName}
               </h2>
             </section>
