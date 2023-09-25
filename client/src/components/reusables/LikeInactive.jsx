@@ -7,7 +7,7 @@ const LikeInactive = ({ inactiveHandler }) => {
 
   return(
     <section
-            onClick={() => token ? inactiveHandler(false) : dispatch(setLoginModal())}
+            onClick={() => token ? inactiveHandler(true) : dispatch(setLoginModal())}
             className="flex cursor-pointer bg-button-inactive hover:bg-green-300 items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
