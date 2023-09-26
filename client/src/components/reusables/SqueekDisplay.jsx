@@ -9,7 +9,7 @@ import LikeActive from "./LikeActive";
 import FavoritesButton from "./FavoritesButton";
 import { useState } from "react";
 
-const SqueekDisplay = ({ squeek }) => {
+const SqueekDisplay = ({ squeek, userProfile }) => {
   if (!squeek) return null;
   const token = useSelector((state) => state.userToken.token);
   const userId = useSelector((state) => state.userToken.id);
@@ -76,11 +76,13 @@ const SqueekDisplay = ({ squeek }) => {
                 {squeek.author.firstName}
               </h2>
             </section>
-            <section className="flex px-1 bg-accent-2 rounded-e-sm">
-              <h3 className="text-accent-1 text-sm p-1">
-                @{squeek.author.username}
-              </h3>
-            </section>
+            <Link
+              to={`/users/${squeek.author.username}`}
+              onClick={() => userProfile(squeek.author.username)}
+              className="px-1 font-bold text-content text-lg"
+            >
+              @{squeek.author.username}
+            </Link>
           </section>
           {/* <section>
           <p>2h</p>

@@ -60,6 +60,7 @@ router.get('/me', checkAuth, async (req, res) => {
 })
 
 router.get('/:username', async (req, res) => {
+  const isUser = req.user ? req.user : 0;
   const { username } = req.params
   try {
     const user = await prisma.user.findUnique({
@@ -80,9 +81,24 @@ router.get('/:username', async (req, res) => {
                 photo: true,
                 verified: true
               }
+            },
+            reactions: { 
+              where: { authorId: isUser },
+            },
+          }
+        },
+        replies: {
+          include: {
+            author: {
+              select: {
+                username: true,
+                firstName: true,
+                photo: true,
+                verified: true
+              }
             }
           }
-        }
+        }, 
       }
     });
     if (user) {

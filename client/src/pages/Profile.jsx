@@ -7,7 +7,7 @@ import ReplyDisplay from "../components/reusables/ReplyDisplay";
 import { useDispatch } from 'react-redux';
 import { setToken } from '../redux/tokenSlice';
 
-const Profile = ({squeek}) => {
+const Profile = () => {
   const [user, setUser] = useState();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [displaySqueeks, setDisplaySqueeks] = useState(true); 
@@ -64,6 +64,10 @@ const Profile = ({squeek}) => {
     setDisplaySqueeks(false);
     setDisplayNibbles(true);
   };
+
+  if(!token){
+    navigate("/");
+  }
 
   return (
     <div className="bg-bkg w-full">
@@ -151,7 +155,7 @@ const Profile = ({squeek}) => {
                       </p>
                       {displaySqueeks && user.squeeks ? (
                         user.squeeks.map((squeek, i) => (
-                          <SqueekDisplay key={i} squeek={squeek} />
+                          <SqueekDisplay key={i} squeek={squeek}/>
                         ))
                       ) : (
                         ""
