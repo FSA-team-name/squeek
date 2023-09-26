@@ -10,7 +10,7 @@ import FavoritesInactive from "./FavoritesInactive";
 import FavoritesActive from "./FavoritesActive";
 import { useState } from "react";
 
-const SqueekDisplay = ({ squeek }) => {
+const SqueekDisplay = ({ squeek, userProfile }) => {
   if (!squeek) return null;
   const token = useSelector((state) => state.userToken.token);
   const userId = useSelector((state) => state.userToken.id);
@@ -65,7 +65,7 @@ const SqueekDisplay = ({ squeek }) => {
 
   return (
     <>
-      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 hover:bg-neutral-600 bg-comp shadow-md rounded-s ">
+      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 hover:bg-neutral-600 bg-comp shadow-md rounded-lg ">
         {/* name and pic and hr */}
         <section className="flex justify-between items-center">
           <section className="flex justify-start py-1 items-center">
@@ -77,11 +77,13 @@ const SqueekDisplay = ({ squeek }) => {
                 {squeek.author.firstName}
               </h2>
             </section>
-            <section className="flex px-1 bg-accent-2 rounded-e-sm">
-              <h3 className="text-accent-1 text-sm p-1">
-                @{squeek.author.username}
-              </h3>
-            </section>
+            <Link
+              to={`/users/${squeek.author.username}`}
+              onClick={() => userProfile(squeek.author.username)}
+              className="px-1 font-bold text-content text-lg"
+            >
+              @{squeek.author.username}
+            </Link>
           </section>
           {/* <section>
           <p>2h</p>
