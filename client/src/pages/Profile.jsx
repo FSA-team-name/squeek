@@ -40,8 +40,8 @@ const Profile = () => {
   }, [token]);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-  }, [width]);
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
   
   const logout = () => {
     localStorage.removeItem('logintoken');

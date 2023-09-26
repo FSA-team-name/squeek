@@ -46,8 +46,8 @@ const App = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-  }, [width]);
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
 
   useEffect(() => {
     const getUser = async (token) => {
