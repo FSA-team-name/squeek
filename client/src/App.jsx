@@ -27,6 +27,7 @@ import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
 import { resetModal } from "./redux/modalSlice";
 import socket from "./socket";
+import UsersProfile from "./components/UsersProfile";
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
@@ -88,6 +89,7 @@ const App = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
+        <Route path="/users/:username" element={<UsersProfile />}/>
         <Route path="/profile" element={<Profile />} />
         <Route path="/404-notfound" element={<Notfound />} />
         <Route path="/squeeks/:id" element={<Thread />} />

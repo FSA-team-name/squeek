@@ -5,7 +5,7 @@ import SqueekDisplay from '../components/reusables/SqueekDisplay'
 import { Link, useNavigate } from "react-router-dom";
 import ReplyDisplay from "../components/reusables/ReplyDisplay";
 
-const Profile = ({squeek}) => {
+const Profile = () => {
   const [user, setUser] = useState();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [displaySqueeks, setDisplaySqueeks] = useState(true); 
@@ -34,6 +34,8 @@ const Profile = ({squeek}) => {
     userProfile();
   }, [token]);
 
+ 
+
   const updateUserProfile = (updatedUserData) => {
     setUser(updatedUserData);
     setIsEditingProfile(false);
@@ -49,6 +51,10 @@ const Profile = ({squeek}) => {
     setDisplaySqueeks(false);
     setDisplayNibbles(true);
   };
+
+  if(!token){
+    navigate("/");
+  }
 
   return (
     <div className="bg-bkg w-full">
@@ -129,7 +135,7 @@ const Profile = ({squeek}) => {
                       </p>
                       {displaySqueeks && user.squeeks ? (
                         user.squeeks.map((squeek, i) => (
-                          <SqueekDisplay key={i} squeek={squeek} />
+                          <SqueekDisplay key={i} squeek={squeek}/>
                         ))
                       ) : (
                         ""
