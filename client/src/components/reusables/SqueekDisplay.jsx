@@ -64,7 +64,7 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
 
   return (
     <>
-      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 bg-comp shadow-md rounded-s ">
+      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 bg-comp shadow-md rounded-lg ">
         {/* name and pic and hr */}
         <section className="flex justify-between items-center">
           <section className="flex justify-start py-1 items-center">

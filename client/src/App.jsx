@@ -26,7 +26,9 @@ import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
 import { resetModal } from "./redux/modalSlice";
+import MobileNavbar from './components/MobileNavbar';
 import socket from "./socket";
+import MobileHeading from "./components/MobileHeading";
 import UsersProfile from "./components/UsersProfile";
 
 const App = () => {
@@ -35,12 +37,17 @@ const App = () => {
   const username = useSelector((state) => state.userToken.username);
   const showReplyModal = useSelector((state) => state.modalState.replyModal);
   const showLoginModal = useSelector((state) => state.modalState.loginModal);
-  const showReSqueekModal = useSelector(
-    (state) => state.modalState.reSqueekModal
-  );
+  const showReSqueekModal = useSelector((state) => state.modalState.reSqueekModal);
   const squeek = useSelector((state) => state.modalState.squeek);
 
   const dispatch = useDispatch();
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [width]);
 
   useEffect(() => {
     const getUser = async (token) => {
@@ -53,6 +60,7 @@ const App = () => {
           },
         });
         const data = await response.json();
+        setUser(data);
         dispatch(setToken({ id: data.id, username: data.username, token }));
         socket.emit("newUser", {
           username: data.username,
@@ -71,7 +79,7 @@ const App = () => {
   }, []);
 
   return (
-    <section className="flex relative bg-bkg">
+    <section className="block sm:flex relative bg-bkg">
       <Modal isVisible={showReplyModal}>
         {token ? <ReplyModalDisplay squeek={squeek} /> : <LoginModal />}
       </Modal>
@@ -81,7 +89,11 @@ const App = () => {
       <Modal isVisible={showLoginModal}>
         <LoginModal />
       </Modal>
-      <Navbar />
+      {
+        width > 620 ? 
+        <Navbar user={user} /> :
+        <MobileHeading />
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
@@ -96,8 +108,12 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <section className="w-72 block bg-comp h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-accent1">
+      <section className="w-72 bg-comp h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-accent1 hidden sm:block">
       </section>
+      {
+        width <= 620 && 
+        <MobileNavbar user={user} />
+      }
     </section>
   );
 };

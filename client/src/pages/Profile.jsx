@@ -4,14 +4,19 @@ import EditProfile from "../components/EditProfile";
 import SqueekDisplay from '../components/reusables/SqueekDisplay'
 import { Link, useNavigate } from "react-router-dom";
 import ReplyDisplay from "../components/reusables/ReplyDisplay";
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/tokenSlice';
 
 const Profile = () => {
   const [user, setUser] = useState();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [displaySqueeks, setDisplaySqueeks] = useState(true); 
   const [displayNibbles, setDisplayNibbles] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
   const token = useSelector((state) => state.userToken.token);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const userProfile = async () => {
       try {
@@ -34,7 +39,15 @@ const Profile = () => {
     userProfile();
   }, [token]);
 
- 
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [width]);
+  
+  const logout = () => {
+    localStorage.removeItem('logintoken');
+    dispatch(setToken({token: null, id: null, username: null}));
+    navigate('/');
+  }
 
   const updateUserProfile = (updatedUserData) => {
     setUser(updatedUserData);
@@ -61,6 +74,13 @@ const Profile = () => {
       <main className="container mx-auto mt-6 p-4">
         {user ? (
           <div className="bg-comp rounded-lg shadow-md border-2 border-accent-1">
+            {
+              width <= 620 && (
+                <button type="button" onClick={logout} className={`${!open && 'scale-0'} rounded-full py-2 px-4 relative duration-300 ml-2 bg-accent-1 text-white hover:bg-comp border border-transparent font-bold float-right`}>
+                  Sign Out
+                </button>
+              )
+            }
             <div className="w-full bg-cover bg-no-repeat bg-center" style={{ height: '200px' }}>
               <img className="opacity-0 w-full h-full" src="https://www.pinclipart.com/picdir/middle/3-34092_easter-egg-clip-art-easter-egg-transparent-png.png" alt="" />
             </div>

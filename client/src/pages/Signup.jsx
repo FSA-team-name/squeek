@@ -39,9 +39,11 @@ const Signup = () => {
       if (response.ok) {
         const data = await response.json();
         if (data) {
-          dispatch(setToken(data.token));
+          dispatch(setToken({ id: data.id, username: data.username, token: data.token }));
+          localStorage.setItem('logintoken', data.token);
           alert("Account created, thank you!");
-          navigate("/")
+          navigate("/");
+          location.reload();
         } else {
           alert("Could not create an account, please try again.");
         }
