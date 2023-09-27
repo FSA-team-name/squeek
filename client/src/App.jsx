@@ -30,6 +30,7 @@ import MobileNavbar from './components/MobileNavbar';
 import socket from "./socket";
 import MobileHeading from "./components/MobileHeading";
 import UsersProfile from "./components/UsersProfile";
+import Chat from './Chat/Chat';
 
 const App = () => {
   const token = useSelector((state) => state.userToken.token);
@@ -98,6 +99,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/message" element={<Message socket={socket} />} />
+        <Route path="/chat" element={<Chat width={width} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
@@ -108,7 +110,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <section className="w-72 bg-comp h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-accent1 hidden sm:block">
+      <section className="w-72 bg-comp h-screen p-5 pt-8 top-0 duration-300 border-l-4 border-accent-1 hidden sm:block">
       </section>
       {
         width <= 620 && 
