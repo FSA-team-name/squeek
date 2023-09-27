@@ -19,9 +19,12 @@ const MobileNavbar = ({ user }) => {
           <li>
             <Link to='/message'><i className='bi-chat-dots text-accent-1'></i></Link>
           </li>
-          <li>
-            <Link to='/favorites'><i className='bi-bookmark text-accent-1'></i></Link>
-          </li>
+          {
+            token &&
+            <li>
+              <Link to='/favorites'><i className='bi-bookmark text-accent-1'></i></Link>
+            </li>
+          }
           <li>
             <Link to='/communities'><i className='bi-people text-accent-1'></i></Link>
           </li>

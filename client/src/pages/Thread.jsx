@@ -25,7 +25,6 @@ const Thread = () => {
       }
     };
     getSqueekAndReplies();
-    console.log(squeek)
   }, [id]);
 
   return (
