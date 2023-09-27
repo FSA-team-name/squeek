@@ -87,7 +87,7 @@ const Favorites = () => {
   }
 
   return (
-    <div className="container mx-auto mt-10 p-4">
+    <div className="container mx-auto mt-10 h-screen p-4">
       <h1 className="text-4xl font-semibold mb-4 text-center text-content">{title}</h1>
       <div className="bg-comp shadow-md rounded-lg border-2 border-accent-1 p-4 text-content">
         <div className="flex">
