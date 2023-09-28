@@ -25,13 +25,12 @@ const Thread = () => {
       }
     };
     getSqueekAndReplies();
-    console.log(squeek)
   }, [id]);
 
   return (
     <section className="flex-col h-screen w-full overflow-auto overscroll-none">
-        {squeek ? <SqueekDisplay squeek={squeek} /> : <h1>Loading ...</h1>}
-      <section className="bg-toothwhite mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
+        {squeek ? <SqueekDisplay squeek={squeek} /> : <h1 className='text-content'>Loading ...</h1>}
+      <section className="bg-innercomp mt-4 mx-10 pb-6 drop-shadow-md p-2 rounded-md">
         {token && squeek ? <MakeReply id={squeek.id} squeek={squeek} setSqueek={setSqueek} /> : null}
         {squeek ? (
           squeek.replies.map((reply) => {
@@ -40,7 +39,7 @@ const Thread = () => {
             );
           })
         ) : (
-          <p>There aren't any replies yet</p>
+          <p className='text-content'>There aren't any replies yet</p>
         )}
       </section>
     </section>

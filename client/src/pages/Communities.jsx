@@ -1,8 +1,8 @@
 const Communities = () => {
   return(
-    <>
-      <h1>Communities</h1>
-    </>
+    <section className='h-screen w-full bg-innercomp'>
+      <h1 className='items-center text-2xl text-content'> Communities are coming soon to Squeek!</h1>
+    </section>
   )
 }
 

@@ -16,7 +16,6 @@ const UsersProfile = () => {
         const response = await fetch(`/api/users/${username}`);
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setUser(data);
         } else {
           console.error("Error fetching user data");
