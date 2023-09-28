@@ -54,13 +54,10 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
   const activeHandler = async (reaction) => {
     // const response = await sendReaction(reaction);
     // squeek.reactions.push(reaction);
-    console.log(reaction);
   };
 
   const inactiveHandler = async (reaction) => {
     const response = await sendReaction(reaction);
-    // squeek.reactions.push(reaction);
-    console.log("from inactive handler", response);
   };
 
   return (
