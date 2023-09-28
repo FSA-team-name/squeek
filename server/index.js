@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 
 app.use(cors());
 
+
 const io = require('socket.io')(http, {
   cors: {
     origin: 'http://localhost:5173',
@@ -26,12 +27,12 @@ io.on('connection', (socket) => {
     console.log(data)
     io.emit('messageResponse', data);
   });
-
+  
   socket.on('newUser', (data) => {
     users.push(data);
     io.emit('newUserResponse', users);
   });
-
+  
   socket.on('disconnect', () => {
     console.log(`🐭: User ${socket.id} disconnected`);
     // users = users.filter((user) => user.socketID !== socket.id);
@@ -46,9 +47,9 @@ app.use(require("morgan")("dev"));
 
 app.use((req, res, next) => {
   const auth = req.headers.authorization;
-
+  
   const token = auth?.startsWith("Bearer ") ? auth.slice(7): null;
-
+  
   try{
     const {id} = jwt.verify(token, process.env.JWT);
     req.user = id;
@@ -64,8 +65,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "client/dist/index.html"));
 });
 
+
 app.use("/api", require("./api"));
 app.use("/auth", require("./auth"));
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "..", "client/dist/index.html"))
+  });
 
 http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
