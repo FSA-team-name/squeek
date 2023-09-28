@@ -6,7 +6,8 @@ import DislikeInactive from "./DislikeInactive";
 import DislikeActive from "./DislikeActive";
 import LikeInactive from "./LikeInactive";
 import LikeActive from "./LikeActive";
-import FavoritesButton from "./FavoritesButton";
+import FavoritesInactive from "./FavoritesInactive";
+import FavoritesActive from "./FavoritesActive";
 import { useState } from "react";
 
 const SqueekDisplay = ({ squeek, userProfile }) => {
@@ -64,7 +65,7 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
 
   return (
     <>
-      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 bg-comp shadow-md rounded-lg ">
+      <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 hover:bg-neutral-600 bg-comp shadow-md rounded-lg ">
         {/* name and pic and hr */}
         <section className="flex justify-between items-center">
           <section className="flex justify-start py-1 items-center">
@@ -72,7 +73,7 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
               <img className="h-full" src={squeek.author.photo} />
             </section>
             <section className="flex ml-2 bg-accent-1 rounded-s-sm">
-              <h2 className="px-1 font-bold text-content text-lg">
+              <h2 className="px-1 font-bold text-bkg text-lg">
                 {squeek.author.firstName}
               </h2>
             </section>
@@ -126,12 +127,12 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
           {/* <Link to={squeekURL}> */}
           <section
             onClick={() => dispatch(setReplyModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-comp hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-amber-200 w-6 h-6"
+              className="fill-toothwhite stroke-accent-1 w-6 h-6"
             >
               <path
                 fillRule="evenodd"
@@ -143,7 +144,7 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
           {/* </Link> */}
           <section
             onClick={() => dispatch(setReSqueekModal({ squeek: squeek }))}
-            className="flex cursor-pointer bg-accent-2 hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-comp hover:bg-bkg items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +158,16 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
               />
             </svg>
           </section>
-          <FavoritesButton createFavorite={createFavorite}/>
+          {squeek.favorites ? (
+            squeek.favorites.find(
+              ({ authorId, squeekId  }) =>
+                authorId === userId && squeekId === squeek.id
+            ) ? (
+              <FavoritesActive />
+            ) : (
+              <FavoritesInactive createFavorite={createFavorite}/>
+            )
+          ) : null}
         </section>
       </section>
     </>

@@ -27,7 +27,7 @@ model User {
   squeeks    Squeek[]
   replies    Reply[]
   reactions  Reaction[]
-  Favorite   Favorite[]
+  favorites   Favorite[]
 }
 
 model Squeek {
@@ -42,7 +42,7 @@ model Squeek {
   replies         Reply[]
   reactions       Reaction[]
   tags            Tag[]
-  Favorite        Favorite[]
+  favorites        Favorite[]
 }
 
 model Reply {

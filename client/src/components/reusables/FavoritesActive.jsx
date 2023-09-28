@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginModal } from "../../redux/modalSlice";
 
-const FavoritesButton = ({ createFavorite }) => {
+const FavoritesActive = ({ createFavorite }) => {
   const token = useSelector((state) => state.userToken.token);
   const dispatch = useDispatch();
   return (
     <section
             onClick={() => token ? createFavorite() : dispatch(setLoginModal())}
-            className="flex cursor-pointer bg-button-inactive hover:bg-button-active items-center justify-center rounded-md w-8 h-8 "
+            className="flex cursor-pointer bg-sky-700 hover:bg-button-inactive items-center justify-center rounded-md w-8 h-8 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +24,4 @@ const FavoritesButton = ({ createFavorite }) => {
   )
 }
 
-export default FavoritesButton
+export default FavoritesActive

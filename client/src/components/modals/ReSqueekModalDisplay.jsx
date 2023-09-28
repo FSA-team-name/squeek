@@ -23,6 +23,8 @@ const ReSqueekModalDisplay = ({ squeek }) => {
         },
         body: JSON.stringify({ text: input }),
       });
+      const data = await response.json();
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -30,9 +32,6 @@ const ReSqueekModalDisplay = ({ squeek }) => {
 
   const formHandler = async (e) => {
     e.preventDefault();
-    if (squeekInput.length === 0) {
-      return;
-    }
     await postReSqueek(squeekInput);
     setSqueekInput("");
     setCharacterCount(0);

@@ -1,7 +1,7 @@
 const NoActionsSqueekDisplay = ({ squeek }) => {
   if (!squeek) return null;
   return (
-    <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center border-2 border-accent-1 bg-comp shadow-md rounded-lg ">
+    <section className="flex-auto flex-col my-4 mx-2 p-4 justify-center hover:bg-neutral-600 border-2 border-accent-1 bg-comp shadow-md rounded-lg ">
         {/* name and pic and hr */}
         <section className="flex justify-between items-center">
           <section className="flex justify-start py-1 items-center">
@@ -9,7 +9,7 @@ const NoActionsSqueekDisplay = ({ squeek }) => {
               <img className="h-full" src={squeek.author.photo} />
             </section>
             <section className="flex ml-2 bg-accent-1 rounded-s-sm">
-              <h2 className="px-1 font-bold text-content text-lg">
+              <h2 className="px-1 font-bold text-bkg text-lg">
                 {squeek.author.firstName}
               </h2>
             </section>
