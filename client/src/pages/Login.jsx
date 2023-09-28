@@ -27,6 +27,7 @@ const Login = () => {
           const data = await response.json();
           if (data.token) {
             dispatch(setToken(data));
+            dispatch(setUser(data.user));
             localStorage.setItem('logintoken', data.token);
             navigate("/")
           } else {
