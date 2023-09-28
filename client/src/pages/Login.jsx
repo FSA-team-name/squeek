@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setToken } from "../redux/tokenSlice";
+import { setToken, setUser } from "../redux/tokenSlice";
 import logo from '../assets/mouse-logo.png';
 
 const Login = () => {
@@ -28,7 +28,6 @@ const Login = () => {
           if (data.token) {
             dispatch(setToken(data));
             localStorage.setItem('logintoken', data.token);
-            alert('Logged in successfully');
             navigate("/")
           } else {
             setError("Invalid username or password");
