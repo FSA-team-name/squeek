@@ -57,7 +57,18 @@ router.post("/login", async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
     if(passwordMatch){
       const token = jwt.sign({id: user.id}, process.env.JWT)
-      res.status(201).send({token, id: user.id, username: user.username, user: user});
+      res.status(201).send({
+        token, 
+        id: user.id, 
+        username: user.username,
+        user :{
+          username: user.username,   
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          photo: user.photo,
+          }
+      });
     }else{
       res.send({message: 'couldnt find user'})
     }
