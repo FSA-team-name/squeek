@@ -66,7 +66,6 @@ const App = () => {
           username: data.username,
           socketID: socket.id,
         });
-        console.log('hell from app')
       } catch (err) {
         console.error(err);
       }

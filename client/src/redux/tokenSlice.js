@@ -17,7 +17,6 @@ export const tokenSlice = createSlice({
       state.id = action.payload.id;
     },
     setUser: (state, action) => {
-      console.log(action);
       state.user = action.payload;
     }
   },

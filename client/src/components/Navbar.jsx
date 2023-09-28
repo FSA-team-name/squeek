@@ -62,7 +62,7 @@ const Navbar = () => {
           </li>
 
           {
-            user ? (
+            user && token ? (
             <li>
               <Link to="/profile" className={`${open && 'p-2'} text-content flex items-center gap-x-4 hover:bg-accent-2 rounded-md mt-9`}>
                 <img src={user.photo} className="block box-border h-10 w-10 border-2 border-accent-1 items-center rounded-full" alt='profile' />
