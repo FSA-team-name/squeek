@@ -76,7 +76,6 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
             </section>
             <Link
               to={`/users/${squeek.author.username}`}
-              onClick={() => userProfile(squeek.author.username)}
               className="px-1 font-bold text-content text-lg"
             >
               @{squeek.author.username}
