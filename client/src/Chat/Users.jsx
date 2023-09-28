@@ -1,8 +1,8 @@
 const Users = ({ width }) => {
 
-  const getUsers = async() => {
+  // const getUsers = async() => {
     
-  }
+  // }
   
   if (width > 620) {
     return (

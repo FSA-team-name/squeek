@@ -39,7 +39,7 @@ const Navbar = ({ user }) => {
           </Link>
           </li>
           <li className={`text-content flex items-center gap-x-4 p-2 hover:bg-accent-2 rounded-md mt-2`}>
-          <Link to="/message">
+          <Link to="/chat">
             <i className='bi-chat-dots'></i>
             <h1 className={`${!open && 'scale-0'} relative duration-300 ml-2`}>Messages</h1>
           </Link>

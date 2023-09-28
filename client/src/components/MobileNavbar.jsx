@@ -17,7 +17,7 @@ const MobileNavbar = ({ user }) => {
           <Link to='/explore'><i className='bi-search text-accent-1'></i></Link>
           </li>
           <li>
-            <Link to='/message'><i className='bi-chat-dots text-accent-1'></i></Link>
+            <Link to='/chat'><i className='bi-chat-dots text-accent-1'></i></Link>
           </li>
           {
             token &&

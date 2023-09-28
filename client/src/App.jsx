@@ -8,7 +8,6 @@ import {
   Home,
   Profile,
   Thread,
-  Message,
   Signup,
   Communities,
   Explore,
@@ -22,12 +21,10 @@ import ReplyModalDisplay from "./components/modals/ReplyModalDisplay";
 import ReSqueekModalDisplay from "./components/modals/ReSqueekModalDisplay";
 import EditProfile from "./components/EditProfile";
 import LoginModal from "./components/modals/LoginModal";
-import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { setToken } from "./redux/tokenSlice";
 import { resetModal } from "./redux/modalSlice";
 import MobileNavbar from './components/MobileNavbar';
-import socket from "./socket";
 import MobileHeading from "./components/MobileHeading";
 import UsersProfile from "./components/UsersProfile";
 import Chat from './Chat/Chat';
@@ -63,10 +60,6 @@ const App = () => {
         const data = await response.json();
         setUser(data);
         dispatch(setToken({ id: data.id, username: data.username, token }));
-        socket.emit("newUser", {
-          username: data.username,
-          socketID: socket.id,
-        });
       } catch (err) {
         console.error(err);
       }
@@ -98,7 +91,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/message" element={<Message socket={socket} />} />
         <Route path="/chat" element={<Chat width={width} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/communities" element={<Communities />} />
