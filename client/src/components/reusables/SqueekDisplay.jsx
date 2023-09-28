@@ -54,13 +54,10 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
   const activeHandler = async (reaction) => {
     // const response = await sendReaction(reaction);
     // squeek.reactions.push(reaction);
-    console.log(reaction);
   };
 
   const inactiveHandler = async (reaction) => {
     const response = await sendReaction(reaction);
-    // squeek.reactions.push(reaction);
-    console.log("from inactive handler", response);
   };
 
   return (
@@ -79,7 +76,6 @@ const SqueekDisplay = ({ squeek, userProfile }) => {
             </section>
             <Link
               to={`/users/${squeek.author.username}`}
-              onClick={() => userProfile(squeek.author.username)}
               className="px-1 font-bold text-content text-lg"
             >
               @{squeek.author.username}

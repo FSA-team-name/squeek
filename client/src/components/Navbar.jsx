@@ -4,19 +4,21 @@ import { useState } from 'react';
 import control from '../assets/control.png';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../redux/tokenSlice';
+import { setToken, setUser } from '../redux/tokenSlice';
 
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
 
   const [open, setOpen] = useState(true);
   const token = useSelector((state) => state.userToken.token);
+  const user = useSelector((state) => state.userToken.user);
   const username = useSelector((state) => state.userToken.username);
   const dispatch = useDispatch();
 
   const logout = () => {
     localStorage.removeItem('logintoken');
     dispatch(setToken({token: null, id: null, username: null}));
+    dispatch(setUser({user: null}));
   }
   return (
       <nav className={`${open ? 'w-72' : 'w-20'} bg-comp h-screen p-5 pt-8 sticky top-0 duration-300 border-r-4 border-accent-1`}>
@@ -60,7 +62,7 @@ const Navbar = ({ user }) => {
           </li>
 
           {
-            token ? (
+            user && token ? (
             <li>
               <Link to="/profile" className={`${open && 'p-2'} text-content flex items-center gap-x-4 hover:bg-accent-2 rounded-md mt-9`}>
                 <img src={user.photo} className="block box-border h-10 w-10 border-2 border-accent-1 items-center rounded-full" alt='profile' />

@@ -24,7 +24,7 @@ import EditProfile from "./components/EditProfile";
 import LoginModal from "./components/modals/LoginModal";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
-import { setToken } from "./redux/tokenSlice";
+import { setToken, setUser } from "./redux/tokenSlice";
 import { resetModal } from "./redux/modalSlice";
 import MobileNavbar from './components/MobileNavbar';
 import socket from "./socket";
@@ -44,7 +44,6 @@ const App = () => {
   const dispatch = useDispatch();
 
   const [width, setWidth] = useState(window.innerWidth);
-  const [user, setUser] = useState();
 
   useEffect(() => {
     window.addEventListener('resize', () => setWidth(window.innerWidth));
@@ -61,8 +60,8 @@ const App = () => {
           },
         });
         const data = await response.json();
-        setUser(data);
         dispatch(setToken({ id: data.id, username: data.username, token }));
+        dispatch(setUser(data));
         socket.emit("newUser", {
           username: data.username,
           socketID: socket.id,
@@ -92,7 +91,7 @@ const App = () => {
       </Modal>
       {
         width > 620 ? 
-        <Navbar user={user} /> :
+        <Navbar /> :
         <MobileHeading />
       }
       <Routes>
