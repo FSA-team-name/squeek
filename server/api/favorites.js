@@ -34,7 +34,7 @@ router.get("/myFavorites", checkAuth, async (req, res) => {
         },
       },
     });
-    res.send(favorites);
+    res.status(201).send(favorites);
   } catch (error) {
     console.error("Error fetching favorites:", error);
     res.status(500).send({ error: "An error occurred while fetching favorites." });
